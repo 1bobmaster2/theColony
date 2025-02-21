@@ -104,12 +104,11 @@ public static class Saving // this class had to be renamed cuz of a bug
 
             if (data != null)
             {
-                data.name = Regex.Replace(data.name, @"\d", "");
+                
                 GameObject existingObject = GameObject.Find(data.name);
 
                 if (existingObject == null) // Object doesn't exist, instantiate it
                 {
-                    data.name = Regex.Replace(data.name, @"\d", "");
                     GameObject prefab = Resources.Load<GameObject>(data.name);
                     if (prefab != null)
                     {

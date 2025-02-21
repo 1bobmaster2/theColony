@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -35,12 +36,35 @@ public class CreatingLoadingSaves : MonoBehaviour
         foreach (string file in files)
         {
             string objectName = System.IO.Path.GetFileNameWithoutExtension(file).Replace(".ohio", "");
-            objectName = Regex.Replace(objectName, @"\d", "");
-            GameObject existingObject = GameObject.Find(objectName);
+            Debug.LogWarning("current object name is equal to: " + objectName);
+            string fixedObjectname = Regex.Replace(objectName, @"\d", "");
+            Debug.LogWarning("current object name is equal to: " + fixedObjectname);
+            GameObject existingObject = GameObject.Find(fixedObjectname);
+
+            Saveable saveable = null;
+            try
+            {
+                saveable = existingObject.GetComponent<Saveable>();
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning("object is a prefab");
+            }
+            if (saveable == null)
+            {
+                existingObject = GameObject.Find(objectName);
+                Debug.LogWarning("object is a prefab");
+            }
+            else
+            {
+                existingObject = GameObject.Find(fixedObjectname);
+                Debug.LogWarning("object is not a prefab");
+            }
 
             if (existingObject == null) // If the object doesn't exist, instantiate it
             {
-                GameObject prefab = Resources.Load<GameObject>(objectName);
+                string theThingToFind = Regex.Replace(objectName, @"\d", "");
+                GameObject prefab = Resources.Load<GameObject>(theThingToFind);
                 if (prefab != null)
                 {
                     existingObject = Instantiate(prefab);
@@ -48,7 +72,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Prefab not found in Resources: " + objectName);
+                    Debug.LogError("Prefab not found in Resources: " + theThingToFind);
                     continue;
                 }
             }

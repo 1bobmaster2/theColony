@@ -26,5 +26,4 @@ public class Saveable : MonoBehaviour
         }
         prefabName += id;
     }
-    
 }
