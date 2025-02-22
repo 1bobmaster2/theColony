@@ -24,7 +24,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         Saveable savebale = go.GetComponent<Saveable>();
 
         // Delete the save file to prevent reloading
-        path = Application.persistentDataPath + "/" + savebale.prefabName + ".ohio";
+        path = Application.persistentDataPath + "/" + savebale.prefabName+savebale.id + ".dat";
         if (File.Exists(path))
         {
             File.Delete(path);
@@ -34,7 +34,7 @@ public static class Saving // this class had to be renamed cuz of a bug
     public static bool SaveExists(GameObject go)
     {
         Saveable savebale = go.GetComponent<Saveable>();
-        path = Application.persistentDataPath + "/" + savebale.prefabName + ".ohio";
+        path = Application.persistentDataPath + "/" + savebale.prefabName+savebale.id + ".dat";
         return File.Exists(path);
     }
     
@@ -53,7 +53,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         
         
         
-        string prefabName = (saveable != null) ? saveable.prefabName : null;
+        string prefabName = (saveable != null) ? saveable.prefabName+saveable.id : null;
         if (string.IsNullOrEmpty(prefabName))
         {
             prefabName = go.name;
@@ -70,7 +70,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, isTree, position);
 
         BinaryFormatter bf = new BinaryFormatter();
-        path = Application.persistentDataPath + "/" + prefabName + ".ohio";
+        path = Application.persistentDataPath + "/" + prefabName + ".dat";
         FileStream stream = new FileStream(path, FileMode.Create);
         bf.Serialize(stream, data);
         stream.Close();
@@ -88,10 +88,10 @@ public static class Saving // this class had to be renamed cuz of a bug
         }
         
         string prefabName = (saveable != null && !string.IsNullOrEmpty(saveable.prefabName))
-            ? saveable.prefabName
+            ? saveable.prefabName+saveable.id
             : go.name;
         
-        path = Application.persistentDataPath + "/" + prefabName + ".ohio";
+        path = Application.persistentDataPath + "/" + prefabName + ".dat";
         Debug.Log("Final Path: " + path);
         
         

@@ -24,6 +24,6 @@ public class Saveable : MonoBehaviour
         {
             prefabName = gameObject.name.Replace("(Clone)", "").Trim(); // Set prefab name automatically
         }
-        prefabName += id;
+
     }
 }

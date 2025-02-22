@@ -19,6 +19,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         
     }
 
+
     public void SaveGame()
     {
         allGO = FindObjectsOfType<GameObject>();
@@ -31,11 +32,11 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     public void LoadGame()
     {
-        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.ohio");
+        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat");
 
         foreach (string file in files)
         {
-            string objectName = System.IO.Path.GetFileNameWithoutExtension(file).Replace(".ohio", "");
+            string objectName = System.IO.Path.GetFileNameWithoutExtension(file).Replace(".dat", "");
             Debug.LogWarning("current object name is equal to: " + objectName);
             string fixedObjectname = Regex.Replace(objectName, @"\d", "");
             Debug.LogWarning("current object name is equal to: " + fixedObjectname);
@@ -68,7 +69,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                 if (prefab != null)
                 {
                     existingObject = Instantiate(prefab);
-                    existingObject.name = objectName; // Ensure correct name
+                    existingObject.name = objectName;
                 }
                 else
                 {

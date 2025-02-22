@@ -31,7 +31,6 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(tilePrefab, new Vector2(x, y), Quaternion.identity);
                 GameObject go = spawnedTile.gameObject;
                 Saving.RegisterObject(go);
-                spawnedTile.name = "Tile" + x + "," + y;
                 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (y % 2 == 0 && x % 2 != 0);
                 spawnedTile.Init(isOffset);
