@@ -10,7 +10,8 @@ public class farmScript : MonoBehaviour
     public int woodCost = 15;
     public int humanCost = 2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    void Awake()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
@@ -26,11 +27,6 @@ public class farmScript : MonoBehaviour
             Destroy(gameObject);
             cell.isOccupied = false;
         }
-        
-        BoxCollider2D boxCollider = gameObject.AddComponent<BoxCollider2D>();
-
-        // Optional: Modify collider properties
-        boxCollider.size = new Vector2(1, 1);
     }
 
     void OnDestroy()
@@ -42,7 +38,11 @@ public class farmScript : MonoBehaviour
     {
         Vector2 belowPosition = new Vector2(transform.position.x, transform.position.y); // Get the cell below
         Collider2D hit = Physics2D.OverlapPoint(belowPosition); // Detect object at that position
-
+        if (hit == null)
+        {
+            Debug.LogError("farm did not found something below :(");
+            Destroy(gameObject);
+        }
         cell = hit.GetComponent<Tile>();
     }
 

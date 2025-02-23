@@ -42,34 +42,30 @@ public class CreatingLoadingSaves : MonoBehaviour
             Debug.LogWarning("current object name is equal to: " + fixedObjectname);
             GameObject existingObject = GameObject.Find(fixedObjectname);
 
-            Saveable saveable = null;
-            try
-            {
-                saveable = existingObject.GetComponent<Saveable>();
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning("object is a prefab");
-            }
-            if (saveable == null)
-            {
-                existingObject = GameObject.Find(objectName);
-                Debug.LogWarning("object is a prefab");
-            }
-            else
-            {
-                existingObject = GameObject.Find(fixedObjectname);
-                Debug.LogWarning("object is not a prefab");
-            }
+            
 
             if (existingObject == null) // If the object doesn't exist, instantiate it
             {
                 string theThingToFind = Regex.Replace(objectName, @"\d", "");
                 GameObject prefab = Resources.Load<GameObject>(theThingToFind);
+                Debug.LogError($"ok so the GameObject prefab is {prefab}");
+    
                 if (prefab != null)
                 {
-                    existingObject = Instantiate(prefab);
+                    // Load the saved position BEFORE instantiating
+                    PlayerData data = Saving.LoadData(objectName); // New method to load data
+                    Vector3 savedPosition = (data != null) ? 
+                        new Vector3(data.position[0], data.position[1], data.position[2]) : 
+                        Vector3.zero; // Default to (0,0,0) if no data found
+
+                    existingObject = Instantiate(prefab, savedPosition, Quaternion.identity);
                     existingObject.name = objectName;
+                    Tile tile = existingObject.GetComponent<Tile>();
+                    if (tile != null)
+                    {
+                        tile.isTree = data.isTree;
+                        tile.woodOnTree = data.woodOnTree;
+                    }
                 }
                 else
                 {

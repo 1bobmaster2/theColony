@@ -104,8 +104,8 @@ public static class Saving // this class had to be renamed cuz of a bug
 
             if (data != null)
             {
-                
-                GameObject existingObject = GameObject.Find(data.name);
+                string fixedObjectname = Regex.Replace(data.name, @"\d", "");
+                GameObject existingObject = GameObject.Find(fixedObjectname);
 
                 if (existingObject == null) // Object doesn't exist, instantiate it
                 {
@@ -150,5 +150,20 @@ public static class Saving // this class had to be renamed cuz of a bug
             Debug.LogError("No save file found for: " + saveable.prefabName);
         }
     }
+    
+    public static PlayerData LoadData(string objectName)
+    {
+        string path = Application.persistentDataPath + "/" + objectName + ".dat";
+    
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            PlayerData data = bf.Deserialize(stream) as PlayerData;
+            stream.Close();
+            return data;
+        }
 
+        return null;
+    }
 }
