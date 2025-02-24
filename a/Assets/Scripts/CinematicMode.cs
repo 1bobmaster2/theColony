@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class CinematicMode : MonoBehaviour
 {
-    public GameObject canvas;
-    private bool isCinematic = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject canvas; // reference to the canvas object
+    private bool isCinematic = false; // pre setting the isCinematic variable
 
     // Update is called once per frame
     void Update()
@@ -18,12 +13,12 @@ public class CinematicMode : MonoBehaviour
             if (!isCinematic)
             {
                 isCinematic = true;
-                canvas.SetActive(false);
+                canvas.SetActive(false); //make ui invisible when F1 is pressed
             }
             else
             {
                 isCinematic = false;
-                canvas.SetActive(true);
+                canvas.SetActive(true); // make ui visible when F1 is pressed
             }
         }
     }
