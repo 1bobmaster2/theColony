@@ -2,17 +2,14 @@ using UnityEngine;
 
 public class PosFixUIPanel : MonoBehaviour
 {
-    public RectTransform desiredPosition;
-    public Vector2 desiredPositionVector;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public RectTransform desiredPosition; // the desired position
+    public Vector2 desiredPositionVector; // the desired position, but in a vector 2 variable
+
 
     // Update is called once per frame
     void Update()
     {
+        // set the desire position right
         desiredPosition.anchoredPosition = desiredPositionVector;
         Debug.Log("set the desired position");
     }

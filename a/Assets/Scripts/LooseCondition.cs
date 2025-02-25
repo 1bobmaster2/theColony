@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LooseCondition : MonoBehaviour
 {
-    public Stats stats;
-    private string hexColor = "#F5FF00";
-    public Text foodLabel;
+    public Stats stats; // reference to the stats
+    private string hexColor = "#F5FF00"; // reference to the hex colour 
+    public Text foodLabel; // reference to the text
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Eat());
+        StartCoroutine(Eat()); // start the coRoutine
     }
 
     // Update is called once per frame
@@ -19,18 +19,14 @@ public class LooseCondition : MonoBehaviour
     {
         if (stats.foodInStock <= stats.totalhumansInStock)
         {
-            foodLabel.color = Color.red;
+            foodLabel.color = Color.red; // if there isnt enough food to survive the next day set the color to red
         }
         else
         {
             if (ColorUtility.TryParseHtmlString(hexColor, out Color newColor) && foodLabel !=null )
             {
+                // if there is just set the color to its original color
                 foodLabel.color = newColor;
-            }
-            else
-            {
-                // Handle the case where the hex color is invalid
-                //Debug.Log("Invalid hex color: " + hexColor + "or its null");
             }
         }
     }
@@ -39,16 +35,17 @@ public class LooseCondition : MonoBehaviour
     {
         while (true)
         {
+            // take the food, and if the food goes bellow zero load the scene (restart)
             yield return new WaitForSeconds(60f);
             stats.foodInStock -= stats.totalhumansInStock;
             if (stats.foodInStock <= 0)
             {
                 SceneManager.LoadScene(0);
-                stats.foodInStock = 50; // required for correct initaliziation of game
+                // stats.foodInStock = 50; // required for correct initaliziation of game but probably redundant now
             }
             else
             {
-                Debug.Log("survived");
+                Debug.Log("survived"); // logging
             }
             
         }
