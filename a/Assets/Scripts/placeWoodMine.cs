@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// the name of this class isnt really right cuz its more for spawning every building and not just one btw
+// the name of this class isn't really right cuz its more for spawning every building and not just one btw
 public class placeWoodMine  : MonoBehaviour
 {
     [SerializeField] public GameObject woodMine, farm, house; // reference to the prefabs that get spawned
@@ -11,17 +11,14 @@ public class placeWoodMine  : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) // place the tree mine and register it for saving when the player presses one 
         {
             PlaceTreeMine();
-            Saving.RegisterObject(woodMine);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2)) // place the farn and register it for saving when the player presses two
         {
             PlaceFarm();
-            Saving.RegisterObject(farm);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3)) // place the house and register it for saving when the player presses three
         {
             PlaceHouse();
-            Saving.RegisterObject(house);
         }
     }
     

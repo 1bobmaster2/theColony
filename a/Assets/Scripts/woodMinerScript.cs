@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,12 @@ public class woodMinerScript : MonoBehaviour
     public Stats stats;
     public int woodCost = 10;
     public int humanCost = 3;
+
+    /*private void Awake()
+    {
+        Saving.RegisterObject(gameObject);
+    }*/
+
     void Start()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager");
@@ -29,10 +36,10 @@ public class woodMinerScript : MonoBehaviour
         // Optional: Modify collider properties
         boxCollider.size = new Vector2(1, 1);
     }
-    void OnDestroy()
+    /*void OnDestroy()
     {
         Saving.UnregisterObject(gameObject);
-    }
+    }*/
 
     void CheckBelow()
     {

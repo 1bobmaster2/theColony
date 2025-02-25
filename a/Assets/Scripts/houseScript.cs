@@ -8,6 +8,10 @@ public class houseScript : MonoBehaviour
     public Stats stats; // reference to the stats
     public int woodCost = 20; // cost
 
+    private void Awake()
+    {
+        //Saving.RegisterObject(gameObject);
+    }
     void Start()
     {
         // get the stats
@@ -26,16 +30,13 @@ public class houseScript : MonoBehaviour
         else
         {
             // if the user doesn't, destroy the house
+            //Saving.UnregisterObject(gameObject);
             Destroy(gameObject);
             Debug.Log("House destroyed due to lack of wood.");
             cell.isOccupied = false;
         }
 
         // there was a bunch of redudndant code but i removed it
-    }
-    void OnDestroy()
-    {
-        Saving.UnregisterObject(gameObject); // unregister the gameObject
     }
     
     void CheckBelow()
@@ -85,6 +86,7 @@ public class houseScript : MonoBehaviour
         }
 
         cell.isOccupied = false;
+        //Saving.UnregisterObject(gameObject);
         Destroy(gameObject);
     }
 }

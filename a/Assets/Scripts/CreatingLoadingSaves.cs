@@ -32,7 +32,7 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     public void LoadGame()
     {
-        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat"); // get all of the files
+        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat"); // get all the files
 
         foreach (string file in files)
         {
@@ -41,9 +41,7 @@ public class CreatingLoadingSaves : MonoBehaviour
             string fixedObjectname = Regex.Replace(objectName, @"\d", ""); // get the object name without the id
             Debug.LogWarning("current object name is equal to: " + fixedObjectname);
             GameObject existingObject = GameObject.Find(fixedObjectname); // check if the object (without id) already exists in the scene
-
             
-
             if (existingObject == null) // if it doesnt instantiate it
             {
                 string theThingToFind = Regex.Replace(objectName, @"\d", ""); // get the object name without the id

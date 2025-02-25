@@ -10,7 +10,7 @@ public static class Saving // this class had to be renamed cuz of a bug
     private static string path; // the path
     public static List<GameObject> spawnedObjects = new(); // list of all spawned gameObjects
 
-    public static void RegisterObject(GameObject go) // method for registering gameObjects
+    /*public static void RegisterObject(GameObject go) // method for registering gameObjects
     {
         if (!spawnedObjects.Contains(go))
         {
@@ -29,7 +29,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         {
             File.Delete(path);
         }
-    }
+    }*/
     
     public static bool SaveExists(GameObject go) // method for checking for a specific savefile
     {

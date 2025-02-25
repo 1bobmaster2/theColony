@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
             {
                 var spawnedTile = Instantiate(tilePrefab, new Vector2(x, y), Quaternion.identity); // spawn the tile
                 GameObject go = spawnedTile.gameObject;
-                Saving.RegisterObject(go); // register the tile
+                //Saving.RegisterObject(go); // register the tile
                 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (y % 2 == 0 && x % 2 != 0); // check if its offset
                 spawnedTile.Init(isOffset); // change its colour based of the offset

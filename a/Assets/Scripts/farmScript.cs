@@ -13,6 +13,8 @@ public class farmScript : MonoBehaviour
 
     void Awake()
     {
+        //Saving.RegisterObject(gameObject);
+        
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
         stats = statsObject.GetComponent<Stats>(); // assign the stats
         CheckBelow();
@@ -32,11 +34,11 @@ public class farmScript : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    /*void OnDestroy()
     {
         // unregister the gameObject to prevent unneded loading
         Saving.UnregisterObject(gameObject);
-    }
+    }*/
     
     void CheckBelow()
     {
@@ -45,7 +47,6 @@ public class farmScript : MonoBehaviour
         if (hit == null)
         {
             Debug.LogError("farm did not found something below :(");
-            Destroy(gameObject);
         }
         cell = hit.GetComponent<Tile>(); // get the tile
     }
