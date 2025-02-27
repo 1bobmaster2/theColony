@@ -11,22 +11,14 @@ public class CreatingLoadingSaves : MonoBehaviour
     {
         LoadGame(); // load the game on start
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        statsitself.humansInStock++; // increase humans every frame for debugging purposes
-        
-    }
-
+    
 
     public void SaveGame()
     {
-        allGO = FindObjectsOfType<GameObject>(); // get every go in the scene
+        allGO = FindObjectsByType<GameObject>(FindObjectsSortMode.None); // get every go in the scene
         foreach (GameObject go in allGO)
         {
             Saving.SaveGO(go); // save the go in the array
-            Debug.Log(go.name + " saved");
         }
     }
 

@@ -3,19 +3,34 @@ using UnityEngine;
 [System.Serializable]
 public class Tile : MonoBehaviour
 {
-    // all of the colours for tile
+    // all the colours for tile
     [SerializeField] private Color baseColor;
     [SerializeField] private Color offsetColor;
     [SerializeField] private Color treeColor;
     [SerializeField] private Color desolateTreeColor;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
-    // other variables, should be self explanatory
+    // other variables should be self-explanatory
     public bool isTree;
     public bool isOccupied;
-    public Tree thisTree; 
+    public Tree thisTree;  // redundant
     public Stats currentStats;
     public int woodOnTree;
+
+    private void Awake()
+    {
+        var isOffset = (gameObject.transform.position.x % 2 == 0 && gameObject.transform.position.y % 2 != 0) || (gameObject.transform.position.y % 2 == 0 && gameObject.transform.position.x % 2 != 0); // check if its offset
+        Init(isOffset); // change its color based of the offset
+        
+    }
+
+    private void Update()
+    {
+        if (isTree)
+        {
+            spriteRenderer.color = treeColor;
+        }
+    }
 
     public void Start()
     {
@@ -62,7 +77,7 @@ public class Tile : MonoBehaviour
         }
     }
     
-    // not really used
+    // not used
     /*public void OnMouseDown()
     {
         if (isTree)
