@@ -1,6 +1,10 @@
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+
 
 public class CreatingLoadingSaves : MonoBehaviour
 {
@@ -11,16 +15,36 @@ public class CreatingLoadingSaves : MonoBehaviour
     {
         LoadGame(); // load the game on start
     }
-    
 
-    public void SaveGame()
+    public async void ProcessGameObjects()
     {
-        allGO = FindObjectsByType<GameObject>(FindObjectsSortMode.None); // get every go in the scene
-        foreach (GameObject go in allGO)
+        GameObject[] allGo = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+        
+        int chunkSize = allGo.Length / System.Environment.ProcessorCount;
+        List<Task<List<GameObject>>> tasks = new List<Task<List<GameObject>>>();
+
+        for (int i = 0; i < System.Environment.ProcessorCount; i++)
         {
-            Saving.SaveGO(go); // save the go in the array
+            int startIndex = i * chunkSize;
+            int endIndex = (i == System.Environment.ProcessorCount - 1) ? allGo.Length : startIndex + chunkSize;
+            
+            tasks.Add(Task.Run(() => saveObject(allGo.Skip(startIndex).Take(endIndex - startIndex).ToArray())));
         }
+        
+        var result = await Task.WhenAll(tasks);
     }
+
+    private List<GameObject> saveObject(GameObject[] objects)
+    {
+        List<GameObject> savedObjects = new List<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            Saving.SaveGO(obj);
+            savedObjects.Add(obj);
+        }
+        return savedObjects;
+    }
+    
 
     public void LoadGame()
     {

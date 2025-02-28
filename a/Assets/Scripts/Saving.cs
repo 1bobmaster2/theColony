@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 
 public static class Saving // this class had to be renamed cuz of a bug
 {
-    private static string path; // the path
     public static List<GameObject> spawnedObjects = new(); // list of all spawned gameObjects
 
     /*public static void RegisterObject(GameObject go) // method for registering gameObjects
@@ -34,7 +33,7 @@ public static class Saving // this class had to be renamed cuz of a bug
     public static bool SaveExists(GameObject go) // method for checking for a specific savefile
     {
         Saveable savebale = go.GetComponent<Saveable>();
-        path = Application.persistentDataPath + "/" + savebale.prefabName+savebale.id + ".dat";
+        string path = Application.persistentDataPath + "/" + savebale.prefabName+savebale.id + ".dat";
         return File.Exists(path); // return as a bool
     }
     
@@ -70,7 +69,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, isTree, position);
         // create a binary formatter and save the go with the prefab name
         BinaryFormatter bf = new BinaryFormatter();
-        path = Application.persistentDataPath + "/" + prefabName + ".dat";
+        string path = Application.persistentDataPath + "/" + prefabName + ".dat";
         FileStream stream = new FileStream(path, FileMode.Create);
         bf.Serialize(stream, data);
         stream.Close(); // close the stream to avoid errors
@@ -92,7 +91,7 @@ public static class Saving // this class had to be renamed cuz of a bug
             ? saveable.prefabName+saveable.id
             : go.name;
         
-        path = Application.persistentDataPath + "/" + prefabName + ".dat"; // get the right path
+        string path = Application.persistentDataPath + "/" + prefabName + ".dat"; // get the right path
         Debug.Log("Final Path: " + path);
         
         
