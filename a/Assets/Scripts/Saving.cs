@@ -75,7 +75,35 @@ public static class Saving // this class had to be renamed cuz of a bug
         stream.Close(); // close the stream to avoid errors
     }
 
-    
+    public static void SaveForParrarel(GameObject go, Saveable saveable, Tile tile = null, Stats stats = null)
+    {
+        
+        float[] position = { go.transform.position.x, go.transform.position.y, go.transform.position.z };
+        
+        
+        // set the prefab name
+        string prefabName = (saveable != null) ? saveable.prefabName+saveable.id : null;
+        if (string.IsNullOrEmpty(prefabName))
+        {
+            prefabName = go.name;
+        }
+
+        // get all of the variables
+        int woodOnTree = (tile != null && tile.isTree) ? tile.woodOnTree : 0;
+        int woodInStock = stats != null ? stats.woodInStock : 0;
+        int foodInStock = stats != null ? stats.foodInStock : 0;
+        int humansInStock = stats != null ? stats.humansInStock : 0;
+        int totalhumansInStock = stats != null ? stats.totalhumansInStock : 0;
+        bool isTree = tile != null && tile.isTree;
+        // then, create new playerData with all  the previous variables
+        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, isTree, position);
+        // create a binary formatter and save the go with the prefab name
+        BinaryFormatter bf = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/" + prefabName + ".dat";
+        FileStream stream = new FileStream(path, FileMode.Create);
+        bf.Serialize(stream, data);
+        stream.Close(); // close the stream to avoid errors
+    }
     
     
     public static void Load(GameObject go)

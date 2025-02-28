@@ -3,46 +3,127 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 public class CreatingLoadingSaves : MonoBehaviour
 {
     public GameObject[] allGO; // array of every gameObject in the scene
-    public Stats statsitself; // reference to the stats
+    public Stats statsitself; // reference to the stats\
+
+    private string presistentDataPath;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         LoadGame(); // load the game on start
+        presistentDataPath = Application.persistentDataPath;
     }
 
+    private struct SaveDataContainer
+    {
+        public GameObject go;
+        public string prefabName;
+        public int id;
+        public bool isTree;
+        public int woodOnTree;
+        public int woodInStock;
+        public int foodInStock;
+        public int humansInStock;
+        public int totalhumansInStock;
+        public float[] position;
+    }
+    
+    
     public async void ProcessGameObjects()
     {
+        // Get all GameObjects (on the main thread)
         GameObject[] allGo = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
-        
-        int chunkSize = allGo.Length / System.Environment.ProcessorCount;
-        List<Task<List<GameObject>>> tasks = new List<Task<List<GameObject>>>();
+        List<SaveDataContainer> saveDataList = new List<SaveDataContainer>();
 
-        for (int i = 0; i < System.Environment.ProcessorCount; i++)
+        // Pre-collect all the data you need from Unity objects on the main thread
+        foreach (GameObject obj in allGo)
+        {
+            Saveable saveable = obj.GetComponent<Saveable>();
+            // If missing, you might want to skip this object or handle it differently
+            if (saveable == null)
+                continue;
+
+            Tile tile = obj.GetComponent<Tile>();
+            // Use the object's Stats, or fallback to statsitself if missing
+            Stats stats = obj.GetComponent<Stats>() ?? statsitself;
+            float[] pos = { obj.transform.position.x, obj.transform.position.y, obj.transform.position.z };
+
+            SaveDataContainer data = new SaveDataContainer
+            {
+                go = obj,
+                prefabName = saveable.prefabName,
+                id = saveable.id,
+                isTree = (tile != null && tile.isTree),
+                woodOnTree = (tile != null && tile.isTree) ? tile.woodOnTree : 0,
+                woodInStock = stats != null ? stats.woodInStock : 0,
+                foodInStock = stats != null ? stats.foodInStock : 0,
+                humansInStock = stats != null ? stats.humansInStock : 0,
+                totalhumansInStock = stats != null ? stats.totalhumansInStock : 0,
+                position = pos
+            };
+
+            saveDataList.Add(data);
+        }
+
+        // Now, process the save data in parallel. This background task only handles data,
+        // not Unity API calls.
+        int processorCount = System.Environment.ProcessorCount;
+        int chunkSize = saveDataList.Count / processorCount;
+        List<Task> tasks = new List<Task>();
+
+        for (int i = 0; i < processorCount; i++)
         {
             int startIndex = i * chunkSize;
-            int endIndex = (i == System.Environment.ProcessorCount - 1) ? allGo.Length : startIndex + chunkSize;
-            
-            tasks.Add(Task.Run(() => saveObject(allGo.Skip(startIndex).Take(endIndex - startIndex).ToArray())));
+            int endIndex = (i == processorCount - 1) ? saveDataList.Count : startIndex + chunkSize;
+            List<SaveDataContainer> chunk = saveDataList.Skip(startIndex).Take(endIndex - startIndex).ToList();
+
+            tasks.Add(Task.Run(() =>
+            {
+                foreach (var data in chunk)
+                {
+                    // Create the PlayerData object using the pre-collected data.
+                    // This code now runs in the background and does not access any Unity APIs.
+                    string combinedName = data.prefabName + data.id;
+                    PlayerData playerData = new PlayerData(
+                        combinedName,
+                        data.woodOnTree,
+                        data.woodInStock,
+                        data.foodInStock,
+                        data.humansInStock,
+                        data.totalhumansInStock,
+                        data.isTree,
+                        data.position
+                    );
+
+                    // Serialize and save to file (file I/O is thread-safe)
+                    BinaryFormatter bf = new BinaryFormatter();
+                    string path = presistentDataPath + "/" + combinedName + ".dat";
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        bf.Serialize(stream, playerData);
+                    }
+                }
+            }));
         }
-        
-        var result = await Task.WhenAll(tasks);
+
+        await Task.WhenAll(tasks);
     }
 
-    private List<GameObject> saveObject(GameObject[] objects)
+    private List<GameObject> saveObject(GameObject[] objects, Saveable saveable = null, Tile tile = null, Stats stats = null)
     {
-        List<GameObject> savedObjects = new List<GameObject>();
         foreach (GameObject obj in objects)
         {
-            Saving.SaveGO(obj);
-            savedObjects.Add(obj);
+            Saving.SaveForParrarel(obj, saveable, tile, stats);
         }
-        return savedObjects;
+
+        return null;
     }
     
 
@@ -70,7 +151,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                     PlayerData data = Saving.LoadData(objectName); // load the data using the helper method
                     Vector3 savedPosition = (data != null) ? 
                         new Vector3(data.position[0], data.position[1], data.position[2]) : 
-                        Vector3.zero; // if theres no data set it at zero
+                        Vector3.zero; // if there is no data set it at zero
 
                     existingObject = Instantiate(prefab, savedPosition, Quaternion.identity); // instantiate the go with the data
                     existingObject.name = objectName; 

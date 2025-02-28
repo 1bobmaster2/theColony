@@ -2939,8 +2939,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleGO: {fileID: 4366854084808365232}
-  width: 100
-  height: 100
+  width: 10
+  height: 10
   tilePrefab: {fileID: 3749601321760393936, guid: 50cb76d8ebbaa8e45a518c43196223f2, type: 3}
   cam: {fileID: 5918258808937209574}
 --- !u!114 &7890312897934663485
