@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -124,6 +125,26 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     void DisableSavedPopup()
     {
+        StartCoroutine(FadeOutText());
+    }
+    
+    IEnumerator FadeOutText()
+    {
+        float duration = 1f; 
+        float elapsedTime = 0f;
+        float startAlpha = savedText.color.a;
+        float endAlpha = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration; 
+            float alpha = Mathf.SmoothStep(startAlpha, endAlpha, t);
+            savedText.color = new Color(savedText.color.r, savedText.color.g, savedText.color.b, alpha);
+            yield return null;
+        }
+
+        savedText.color = new Color(savedText.color.r, savedText.color.g, savedText.color.b, endAlpha);
         savedText.enabled = false;
     }
 
