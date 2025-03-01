@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -6,12 +5,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 
 public class CreatingLoadingSaves : MonoBehaviour
 {
     public GameObject[] allGO; // array of every gameObject in the scene
-    public Stats statsitself; // reference to the stats\
+    public Stats statsitself; // reference to the stats
+    public Text savedText;
 
     private string presistentDataPath;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,21 +39,21 @@ public class CreatingLoadingSaves : MonoBehaviour
     
     public async void ProcessGameObjects()
     {
-        // Get all GameObjects (on the main thread)
+        
         GameObject[] allGo = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
         List<SaveDataContainer> saveDataList = new List<SaveDataContainer>();
 
-        // Pre-collect all the data you need from Unity objects on the main thread
+        
         foreach (GameObject obj in allGo)
         {
             Saveable saveable = obj.GetComponent<Saveable>();
-            // If missing, you might want to skip this object or handle it differently
+            
             if (saveable == null)
                 continue;
 
             Tile tile = obj.GetComponent<Tile>();
-            // Use the object's Stats, or fallback to statsitself if missing
-            Stats stats = obj.GetComponent<Stats>() ?? statsitself;
+            
+            Stats stats = obj.GetComponent<Stats>();
             float[] pos = { obj.transform.position.x, obj.transform.position.y, obj.transform.position.z };
 
             SaveDataContainer data = new SaveDataContainer
@@ -72,8 +73,7 @@ public class CreatingLoadingSaves : MonoBehaviour
             saveDataList.Add(data);
         }
 
-        // Now, process the save data in parallel. This background task only handles data,
-        // not Unity API calls.
+        
         int processorCount = System.Environment.ProcessorCount;
         int chunkSize = saveDataList.Count / processorCount;
         List<Task> tasks = new List<Task>();
@@ -88,8 +88,7 @@ public class CreatingLoadingSaves : MonoBehaviour
             {
                 foreach (var data in chunk)
                 {
-                    // Create the PlayerData object using the pre-collected data.
-                    // This code now runs in the background and does not access any Unity APIs.
+                    
                     string combinedName = data.prefabName + data.id;
                     PlayerData playerData = new PlayerData(
                         combinedName,
@@ -102,7 +101,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                         data.position
                     );
 
-                    // Serialize and save to file (file I/O is thread-safe)
+                    
                     BinaryFormatter bf = new BinaryFormatter();
                     string path = presistentDataPath + "/" + combinedName + ".dat";
                     using (FileStream stream = new FileStream(path, FileMode.Create))
@@ -114,19 +113,30 @@ public class CreatingLoadingSaves : MonoBehaviour
         }
 
         await Task.WhenAll(tasks);
+        EnableSavedPopup();
     }
 
-    private List<GameObject> saveObject(GameObject[] objects, Saveable saveable = null, Tile tile = null, Stats stats = null)
+    void EnableSavedPopup()
     {
-        foreach (GameObject obj in objects)
-        {
-            Saving.SaveForParrarel(obj, saveable, tile, stats);
-        }
+        savedText.enabled = true;
+        Invoke("DisableSavedPopup", 3.0f);
+    }
 
-        return null;
+    void DisableSavedPopup()
+    {
+        savedText.enabled = false;
+    }
+
+    public void DeleteSaves() // this method is not unused.
+    {
+        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat");
+
+        foreach (string file in files)
+        {
+            File.Delete(file);
+        }
     }
     
-
     public void LoadGame()
     {
         string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat"); // get all the files

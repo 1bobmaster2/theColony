@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class farmScript : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class farmScript : MonoBehaviour
 
     void Awake()
     {
-        //Saving.RegisterObject(gameObject);
+        
         
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
         stats = statsObject.GetComponent<Stats>(); // assign the stats
@@ -34,16 +32,15 @@ public class farmScript : MonoBehaviour
         }
     }
 
-    /*void OnDestroy()
+    void OnDestroy()
     {
-        // unregister the gameObject to prevent unneded loading
-        Saving.UnregisterObject(gameObject);
-    }*/
+        cell.isOccupied = false;
+    }
     
     void CheckBelow()
     {
         Vector2 belowPosition = new Vector2(transform.position.x, transform.position.y); // get the cell below
-        Collider2D hit = Physics2D.OverlapPoint(belowPosition); // check if theres something bellow
+        Collider2D hit = Physics2D.OverlapPoint(belowPosition); // check if there is something bellow
         if (hit == null)
         {
             Debug.LogError("farm did not found something below :(");

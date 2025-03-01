@@ -9,11 +9,7 @@ public class woodMinerScript : MonoBehaviour
     public Stats stats;
     public int woodCost = 10;
     public int humanCost = 3;
-
-    /*private void Awake()
-    {
-        Saving.RegisterObject(gameObject);
-    }*/
+    
 
     void Start()
     {
@@ -36,10 +32,10 @@ public class woodMinerScript : MonoBehaviour
         // Optional: Modify collider properties
         boxCollider.size = new Vector2(1, 1);
     }
-    /*void OnDestroy()
+    void OnDestroy()
     {
-        Saving.UnregisterObject(gameObject);
-    }*/
+        cell.isOccupied = false;
+    }
 
     void CheckBelow()
     {
@@ -77,17 +73,15 @@ public class woodMinerScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        stats.woodInStock = stats.woodInStock + 5;
-        stats.humansInStock = stats.humansInStock + humanCost;
+        stats.woodInStock += 5;
+        stats.humansInStock += humanCost;
         if (cell == null)
         {
             Debug.Log("cell is null!");
             return;
         }
-        else
-        {
-            cell.isOccupied = false;
-        }
+
+        cell.isOccupied = false;
 
         Destroy(gameObject);
     }

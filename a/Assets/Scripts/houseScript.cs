@@ -8,10 +8,11 @@ public class houseScript : MonoBehaviour
     public Stats stats; // reference to the stats
     public int woodCost = 20; // cost
 
-    private void Awake()
+    void OnDestroy()
     {
-        //Saving.RegisterObject(gameObject);
+        cell.isOccupied = false;
     }
+    
     void Start()
     {
         // get the stats
@@ -86,7 +87,6 @@ public class houseScript : MonoBehaviour
         }
 
         cell.isOccupied = false;
-        //Saving.UnregisterObject(gameObject);
         Destroy(gameObject);
     }
 }
