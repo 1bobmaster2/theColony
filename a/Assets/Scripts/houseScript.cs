@@ -20,23 +20,8 @@ public class houseScript : MonoBehaviour
         stats = statsObject.GetComponent<Stats>();
 
         CheckBelow(); // check if theres a tile bellow
-
-        if (stats.woodInStock >= woodCost)
-        {
-            // if the user has enough material, deduct cost from stats and start the CoRoutine
-            stats.woodInStock -= woodCost;
-            Debug.Log("Wood deducted. New wood count: " + stats.woodInStock);
-            StartCoroutine(createHumans());
-        }
-        else
-        {
-            // if the user doesn't, destroy the house
-            //Saving.UnregisterObject(gameObject);
-            Destroy(gameObject);
-            Debug.Log("House destroyed due to lack of wood.");
-            cell.isOccupied = false;
-        }
-
+        StartCoroutine(createHumans());
+        
         // there was a bunch of redudndant code but i removed it
     }
     

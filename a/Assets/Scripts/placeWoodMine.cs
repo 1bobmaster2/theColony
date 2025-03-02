@@ -3,22 +3,52 @@ using UnityEngine;
 // the name of this class isn't really right cuz its more for spawning every building and not just one btw
 public class placeWoodMine  : MonoBehaviour
 {
-    [SerializeField] public GameObject woodMine, farm, house; // reference to the prefabs that get spawned
+    public GameObject woodMine, farm, house; // reference to the prefabs that get spawned
+    public Stats stats;
+    private int woodCostFarm = 15;
+    private int woodCostHouse = 20;
+    private int woodCostWoodcutter = 10;
+    private int humanCostFarm = 2;
+    private int humanCostWoodcutter = 10;
 
+
+    void Start()
+    {
+        GameObject statsObject = GameObject.FindWithTag("statsManager");
+        stats = statsObject.GetComponent<Stats>();
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) // place the tree mine and register it for saving when the player presses one 
         {
-            PlaceTreeMine();
+            if (stats.woodInStock >= woodCostWoodcutter && stats.humansInStock >= humanCostWoodcutter)
+            {
+                stats.woodInStock -= woodCostWoodcutter;
+                stats.humansInStock -= humanCostWoodcutter;
+                PlaceTreeMine();
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) // place the farn and register it for saving when the player presses two
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) // place the farm and register it for saving when the player presses two
         {
-            PlaceFarm();
+            if (stats.woodInStock >= woodCostFarm && stats.humansInStock >= humanCostFarm)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostFarm;
+                stats.humansInStock -= humanCostFarm;
+                Debug.Log("Wood deducted. New wood count: " + stats.woodInStock);
+                PlaceFarm();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3)) // place the house and register it for saving when the player presses three
         {
-            PlaceHouse();
+            if (stats.woodInStock >= woodCostHouse)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostHouse;
+                Debug.Log("Wood deducted. New wood count: " + stats.woodInStock);
+                PlaceHouse();
+            }
         }
     }
     

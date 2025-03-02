@@ -16,20 +16,7 @@ public class farmScript : MonoBehaviour
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
         stats = statsObject.GetComponent<Stats>(); // assign the stats
         CheckBelow();
-        if (stats.woodInStock >= woodCost && stats.humansInStock >= humanCost) // check if the user has enough materials
-        {
-            // deduct it from the stats
-            stats.humansInStock -= humanCost;
-            stats.woodInStock -= woodCost;
-            // start the coroutine
-            StartCoroutine(farm());
-        }
-        else
-        {
-            // destroy it when the user doesn't 
-            Destroy(gameObject);
-            cell.isOccupied = false;
-        }
+        StartCoroutine("farm");
     }
 
     void OnDestroy()

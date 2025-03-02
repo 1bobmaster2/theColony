@@ -16,21 +16,7 @@ public class woodMinerScript : MonoBehaviour
         GameObject statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
         CheckBelow();
-        if (stats.woodInStock >= woodCost && stats.humansInStock >= humanCost)
-        {
-            stats.woodInStock -= woodCost;
-            stats.humansInStock -= humanCost;
-            StartCoroutine(mineTree());
-        }
-        else
-        {
-            Destroy(gameObject);
-            cell.isOccupied = false;
-        }
-        BoxCollider2D boxCollider = gameObject.AddComponent<BoxCollider2D>();
-
-        // Optional: Modify collider properties
-        boxCollider.size = new Vector2(1, 1);
+        StartCoroutine("mineTree"); 
     }
     void OnDestroy()
     {
