@@ -15,6 +15,7 @@ public class CreatingLoadingSaves : MonoBehaviour
     public GameObject[] allGO; // array of every gameObject in the scene
     public Stats statsitself; // reference to the stats
     public Text savedText;
+    public Text deletedSaveText;
 
     private string presistentDataPath;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -131,10 +132,21 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     void DisableSavedPopup()
     {
-        StartCoroutine(FadeOutText());
+        StartCoroutine(FadeOutSavedText());
+    }
+
+    void EnableDeletedSavePopup()
+    {
+        deletedSaveText.enabled = true;
+        Invoke("DisableDeletedSavePopup", 3.0f);
+    }
+
+    void DisableDeletedSavePopup()
+    {
+        StartCoroutine(FadeOutDeletedText());
     }
     
-    IEnumerator FadeOutText()
+    IEnumerator FadeOutSavedText()
     {
         float duration = 1f; 
         float elapsedTime = 0f;
@@ -153,6 +165,26 @@ public class CreatingLoadingSaves : MonoBehaviour
         savedText.color = new Color(savedText.color.r, savedText.color.g, savedText.color.b, endAlpha);
         savedText.enabled = false;
     }
+    
+    IEnumerator FadeOutDeletedText()
+    {
+        float duration = 1f; 
+        float elapsedTime = 0f;
+        float startAlpha = deletedSaveText.color.a;
+        float endAlpha = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration; 
+            float alpha = Mathf.SmoothStep(startAlpha, endAlpha, t);
+            deletedSaveText.color = new Color(deletedSaveText.color.r, deletedSaveText.color.g, deletedSaveText.color.b, alpha);
+            yield return null;
+        }
+
+        deletedSaveText.color = new Color(deletedSaveText.color.r, deletedSaveText.color.g, deletedSaveText.color.b, endAlpha);
+        deletedSaveText.enabled = false;
+    }
 
     public void DeleteSaves() // this method is not unused.
     {
@@ -162,6 +194,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         {
             File.Delete(file);
         }
+        EnableDeletedSavePopup();
     }
     
     public void LoadGame()
