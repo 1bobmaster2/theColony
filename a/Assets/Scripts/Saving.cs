@@ -94,7 +94,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         
         if (File.Exists(path))
         {
-            // open a binary formatter the deserialise from the path
+            // open a binary formatter to deserialize from the path
             BinaryFormatter bf = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             PlayerData data = bf.Deserialize(stream) as PlayerData;
@@ -102,7 +102,7 @@ public static class Saving // this class had to be renamed cuz of a bug
 
             if (data != null)
             {
-                string fixedObjectname = Regex.Replace(data.name, @"\d", ""); // get the object name without the id (numbers)
+                string fixedObjectname = Regex.Replace(data.name, @"[a-fA-F0-9\-]{36}$", ""); // get the object name without the id (numbers)
                 GameObject existingObject = GameObject.Find(fixedObjectname); // find by the fixed object name
 
                 if (existingObject == null) // if it doesn't exist instantiate it
