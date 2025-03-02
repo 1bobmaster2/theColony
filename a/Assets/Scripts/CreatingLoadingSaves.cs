@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class CreatingLoadingSaves : MonoBehaviour
 {
+    private static readonly object fileLock = new object();
     public GameObject[] allGO; // array of every gameObject in the scene
     public Stats statsitself; // reference to the stats
     public Text savedText;
@@ -27,7 +28,7 @@ public class CreatingLoadingSaves : MonoBehaviour
     {
         public GameObject go;
         public string prefabName;
-        public int id;
+        public string id;
         public bool isTree;
         public int woodOnTree;
         public int woodInStock;
@@ -104,11 +105,16 @@ public class CreatingLoadingSaves : MonoBehaviour
 
                     
                     BinaryFormatter bf = new BinaryFormatter();
-                    string path = presistentDataPath + "/" + combinedName + ".dat";
-                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    string path = presistentDataPath + "/" + data.prefabName+data.id + ".dat";
+                    
+                    lock (fileLock)
                     {
-                        bf.Serialize(stream, playerData);
+                        using (FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+                        {
+                            bf.Serialize(stream, playerData);
+                        }
                     }
+                    
                 }
             }));
         }
@@ -160,19 +166,20 @@ public class CreatingLoadingSaves : MonoBehaviour
     
     public void LoadGame()
     {
-        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat"); // get all the files
+        string[] files = Directory.GetFiles(Application.persistentDataPath, "*.dat"); // get all the files
 
         foreach (string file in files)
         {
-            string objectName = System.IO.Path.GetFileNameWithoutExtension(file).Replace(".dat", ""); // get the object
-            Debug.LogWarning("current object name is equal to: " + objectName);
-            string fixedObjectname = Regex.Replace(objectName, @"\d", ""); // get the object name without the id
-            Debug.LogWarning("current object name is equal to: " + fixedObjectname);
+            string objectName = Path.GetFileNameWithoutExtension(file).Replace(".dat", ""); // get the object
+            Debug.LogError("current object name is equal to: " + objectName);
+            string fixedObjectname = Regex.Replace(objectName, @"[a-fA-F0-9\-]{36}$", ""); // get the object name without guid
+            Debug.LogError("current object name is equal to: " + fixedObjectname);
             GameObject existingObject = GameObject.Find(fixedObjectname); // check if the object (without id) already exists in the scene
             
             if (existingObject == null) // if it doesnt instantiate it
             {
-                string theThingToFind = Regex.Replace(objectName, @"\d", ""); // get the object name without the id
+                string theThingToFind = Regex.Replace(objectName, @"[a-fA-F0-9\-]{36}$", ""); // get the object name without guid
+                Debug.LogError(theThingToFind + " ohio baka ");
                 GameObject prefab = Resources.Load<GameObject>(theThingToFind); // load the prefab from resources
                 Debug.LogError($"ok so the GameObject prefab is {prefab}");
     
@@ -185,23 +192,25 @@ public class CreatingLoadingSaves : MonoBehaviour
                         Vector3.zero; // if there is no data set it at zero
 
                     existingObject = Instantiate(prefab, savedPosition, Quaternion.identity); // instantiate the go with the data
-                    existingObject.name = objectName; 
                     Tile tile = existingObject.GetComponent<Tile>();
                     if (tile != null)
                     {
-                        // set the rest of the variables, if the object is a tile
+                        // set the rest of the variables if the object is a tile
                         tile.isTree = data.isTree; 
                         tile.woodOnTree = data.woodOnTree;
                     }
                 }
                 else
                 {
-                    Debug.LogError("Prefab not found in Resources: " + theThingToFind);
+                    Debug.LogWarning("Prefab not found in Resources: " + theThingToFind);
                     continue;
                 }
             }
+            else
+            {
+                Saving.Load(existingObject);
+            }
             // logging
-            Saving.Load(existingObject);
             Debug.Log(existingObject.name + " loaded");
         }
     }
