@@ -16,6 +16,7 @@ public class CreatingLoadingSaves : MonoBehaviour
     public Stats statsitself; // reference to the stats
     public Text savedText;
     public Text deletedSaveText;
+    public GameObject Question;
 
     private string presistentDataPath;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -188,7 +189,12 @@ public class CreatingLoadingSaves : MonoBehaviour
         deletedSaveText.enabled = false;
     }
 
-    public void DeleteSaves() // this method is not unused.
+    public void AskToDeleteSaves() // this method is not unused.
+    {
+        Question.SetActive(true);
+    }
+
+    public void DeleteSaves()
     {
         string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat");
 
@@ -196,6 +202,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         {
             File.Delete(file);
         }
+        Question.SetActive(false);
         EnableDeletedSavePopup();
     }
     
