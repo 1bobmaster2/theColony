@@ -126,6 +126,7 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     void EnableSavedPopup()
     {
+        savedText.color = new Color(savedText.color.r, savedText.color.g, savedText.color.b, 1f);
         savedText.enabled = true;
         Invoke("DisableSavedPopup", 3.0f);
     }
@@ -137,6 +138,7 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     void EnableDeletedSavePopup()
     {
+        deletedSaveText.color = new Color(deletedSaveText.color.r, deletedSaveText.color.g, deletedSaveText.color.b, 1f);
         deletedSaveText.enabled = true;
         Invoke("DisableDeletedSavePopup", 3.0f);
     }
