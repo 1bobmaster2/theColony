@@ -11,8 +11,6 @@ public class farmScript : MonoBehaviour
 
     void Awake()
     {
-        
-        
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
         stats = statsObject.GetComponent<Stats>(); // assign the stats
         CheckBelow();

@@ -193,10 +193,12 @@ MonoBehaviour:
   baseColor: {r: 0.43137255, g: 0.7372549, b: 0.3647059, a: 1}
   offsetColor: {r: 0.49472636, g: 0.78113204, b: 0.43478101, a: 1}
   treeColor: {r: 1, g: 0.001546457, b: 0, a: 1}
+  stoneColor: {r: 0.42745098, g: 0.42745098, b: 0.42745098, a: 1}
   desolateTreeColor: {r: 0.19999999, g: 0.082641505, b: 0.082641505, a: 1}
   spriteRenderer: {fileID: 7371394026925290262}
   highlight: {fileID: 2387871563967129263}
   isTree: 0
+  isStone: 0
   isOccupied: 0
   thisTree: {fileID: 0}
   currentStats: {fileID: 0}
@@ -260,3 +262,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: Tile
+  id: 

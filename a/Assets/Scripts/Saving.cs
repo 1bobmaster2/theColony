@@ -65,8 +65,9 @@ public static class Saving // this class had to be renamed cuz of a bug
         int humansInStock = stats != null ? stats.humansInStock : 0;
         int totalhumansInStock = stats != null ? stats.totalhumansInStock : 0;
         bool isTree = tile != null && tile.isTree;
+        bool isStone = tile != null && tile.isStone;
         // then, create new playerData with all  the previous variables
-        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, isTree, position);
+        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, isTree, isStone, position);
         // create a binary formatter and save the go with the prefab name
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/" + prefabName + ".dat";

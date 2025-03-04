@@ -22,33 +22,15 @@ public class placeWoodMine  : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) // place the tree mine and register it for saving when the player presses one 
         {
-            if (stats.woodInStock >= woodCostWoodcutter && stats.humansInStock >= humanCostWoodcutter)
-            {
-                stats.woodInStock -= woodCostWoodcutter;
-                stats.humansInStock -= humanCostWoodcutter;
-                PlaceTreeMine();
-            }
+            PlaceTreeMine();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2)) // place the farm and register it for saving when the player presses two
         {
-            if (stats.woodInStock >= woodCostFarm && stats.humansInStock >= humanCostFarm)
-            {
-                // if the user has enough material, deduct cost from stats and start the CoRoutine
-                stats.woodInStock -= woodCostFarm;
-                stats.humansInStock -= humanCostFarm;
-                Debug.Log("Wood deducted. New wood count: " + stats.woodInStock);
-                PlaceFarm();
-            }
+            PlaceFarm();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3)) // place the house and register it for saving when the player presses three
         {
-            if (stats.woodInStock >= woodCostHouse)
-            {
-                // if the user has enough material, deduct cost from stats and start the CoRoutine
-                stats.woodInStock -= woodCostHouse;
-                Debug.Log("Wood deducted. New wood count: " + stats.woodInStock);
-                PlaceHouse();
-            }
+            PlaceHouse();
         }
     }
     
@@ -62,8 +44,19 @@ public class placeWoodMine  : MonoBehaviour
         Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y)); // get the snapped position
         Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // check if theres something bellow
         Tile cell = hit.GetComponent<Tile>(); // get the Tile bellow
-        if (cell.isTree == true && cell.isOccupied == false)
+        if (cell.isTree && cell.isOccupied == false && cell.isStone == false)
         {
+            if (stats.woodInStock >= woodCostWoodcutter && stats.humansInStock >= humanCostWoodcutter)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostWoodcutter;
+                stats.humansInStock -= humanCostWoodcutter;
+            }
+            else
+            {
+                return;
+            }
+            
             Instantiate(woodMine, snappedPosition, Quaternion.identity); // place it if all conditions are met
             cell.isOccupied = true;
         }
@@ -79,8 +72,18 @@ public class placeWoodMine  : MonoBehaviour
         Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y));
         Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // reused woodMinerScript 13th line
         Tile cell = hit.GetComponent<Tile>();
-        if (cell.isTree == false && cell.isOccupied == false)
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
         {
+            if (stats.woodInStock >= woodCostFarm && stats.humansInStock >= humanCostFarm)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostFarm;
+                stats.humansInStock -= humanCostFarm;
+            }
+            else
+            {
+                return;
+            }
             Instantiate(farm, snappedPosition, Quaternion.identity); // Place prefab
             cell.isOccupied = true;
             Debug.Log("placed farm");
@@ -100,8 +103,17 @@ public class placeWoodMine  : MonoBehaviour
         Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y));
         Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // reused woodMinerScript 13th line
         Tile cell = hit.GetComponent<Tile>();
-        if (cell.isTree == false && cell.isOccupied == false)
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
         {
+            if (stats.woodInStock >= woodCostHouse)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostHouse;
+            }
+            else
+            {
+                return;
+            }
             Instantiate(house, snappedPosition, Quaternion.identity); // Place prefab
             cell.isOccupied = true;
             Debug.Log("placed house");

@@ -7,11 +7,13 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color baseColor;
     [SerializeField] private Color offsetColor;
     [SerializeField] private Color treeColor;
+    [SerializeField] private Color stoneColor;
     [SerializeField] private Color desolateTreeColor;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
     // other variables should be self-explanatory
     public bool isTree;
+    public bool isStone;
     public bool isOccupied;
     public Tree thisTree;  // redundant
     public Stats currentStats;
@@ -29,6 +31,10 @@ public class Tile : MonoBehaviour
         if (isTree)
         {
             spriteRenderer.color = treeColor;
+        }
+        else if (isStone)
+        {
+            spriteRenderer.color = stoneColor;
         }
     }
 
@@ -72,8 +78,12 @@ public class Tile : MonoBehaviour
         {
             isTree = true;
             spriteRenderer.color = treeColor;
-            thisTree = new Tree(); // Store the Tree instance
             Debug.Log("Created a tree");
+        }
+        else if (random == 2)
+        {
+            isStone = true;
+            spriteRenderer.color = stoneColor;
         }
     }
     

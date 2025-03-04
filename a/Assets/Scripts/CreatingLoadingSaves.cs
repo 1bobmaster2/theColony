@@ -32,6 +32,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         public string prefabName;
         public string id;
         public bool isTree;
+        public bool isStone;
         public int woodOnTree;
         public int woodInStock;
         public int foodInStock;
@@ -66,6 +67,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                 prefabName = saveable.prefabName,
                 id = saveable.id,
                 isTree = (tile != null && tile.isTree),
+                isStone = (tile != null && tile.isStone),
                 woodOnTree = (tile != null && tile.isTree) ? tile.woodOnTree : 0,
                 woodInStock = stats != null ? stats.woodInStock : 0,
                 foodInStock = stats != null ? stats.foodInStock : 0,
@@ -102,6 +104,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                         data.humansInStock,
                         data.totalhumansInStock,
                         data.isTree,
+                        data.isStone,
                         data.position
                     );
 
@@ -240,6 +243,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                         // set the rest of the variables if the object is a tile
                         tile.isTree = data.isTree; 
                         tile.woodOnTree = data.woodOnTree;
+                        tile.isStone = data.isStone;
                     }
                 }
                 else
