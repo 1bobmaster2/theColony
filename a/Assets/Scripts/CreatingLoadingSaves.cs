@@ -37,6 +37,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         public int woodInStock;
         public int foodInStock;
         public int humansInStock;
+        public int stoneInStock;
         public int totalhumansInStock;
         public float[] position;
     }
@@ -72,6 +73,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                 woodInStock = stats != null ? stats.woodInStock : 0,
                 foodInStock = stats != null ? stats.foodInStock : 0,
                 humansInStock = stats != null ? stats.humansInStock : 0,
+                stoneInStock = stats != null ? stats.stoneInStock : 0,
                 totalhumansInStock = stats != null ? stats.totalhumansInStock : 0,
                 position = pos
             };
@@ -102,6 +104,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                         data.woodInStock,
                         data.foodInStock,
                         data.humansInStock,
+                        data.stoneInStock,
                         data.totalhumansInStock,
                         data.isTree,
                         data.isStone,

@@ -63,11 +63,12 @@ public static class Saving // this class had to be renamed cuz of a bug
         int woodInStock = stats != null ? stats.woodInStock : 0;
         int foodInStock = stats != null ? stats.foodInStock : 0;
         int humansInStock = stats != null ? stats.humansInStock : 0;
+        int stoneInStock = stats != null ? stats.stoneInStock : 0;
         int totalhumansInStock = stats != null ? stats.totalhumansInStock : 0;
         bool isTree = tile != null && tile.isTree;
         bool isStone = tile != null && tile.isStone;
         // then, create new playerData with all  the previous variables
-        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, isTree, isStone, position);
+        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, stoneInStock, isTree, isStone, position);
         // create a binary formatter and save the go with the prefab name
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/" + prefabName + ".dat";
@@ -134,6 +135,7 @@ public static class Saving // this class had to be renamed cuz of a bug
                     stats.foodInStock = data.foodInStock;
                     stats.humansInStock = data.humansInStock;
                     stats.totalhumansInStock = data.totalhumansInStock;
+                    stats.stoneInStock = data.stoneInStock;
                 }
 
                 // restore the tile, if the gameObject has a tile component, also this is redundant idk why im keeping it here
