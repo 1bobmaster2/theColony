@@ -456,7 +456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175.6, y: -31.7}
+  m_AnchoredPosition: {x: 175.6001, y: -31.699951}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &669590823
@@ -2217,7 +2217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 299.8, y: -32.2}
+  m_AnchoredPosition: {x: 299.80005, y: -32.19995}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2732169733721506864
@@ -2829,6 +2829,7 @@ MonoBehaviour:
   woodMine: {fileID: 6868478275923223835, guid: 30a72fce60e40154e80457b9eb3304fd, type: 3}
   farm: {fileID: 7879959070323112448, guid: df2c9b6a457a4934c977de8563d128cd, type: 3}
   house: {fileID: 5653481259836358935, guid: 420f67d64f8e3ab4ab22f31d07e851f8, type: 3}
+  stoneMine: {fileID: 6868478275923223835, guid: 0d6e34b85df8f034e8f25a4ea50b9598, type: 3}
   stats: {fileID: 0}
 --- !u!224 &4640279851779631169
 RectTransform:
@@ -3331,7 +3332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 433.6, y: -32.2}
+  m_AnchoredPosition: {x: 433.6001, y: -32.19995}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6339543001595980270
@@ -4040,8 +4041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleGO: {fileID: 4366854084808365232}
-  width: 10
-  height: 10
+  width: 100
+  height: 100
   tilePrefab: {fileID: 3749601321760393936, guid: 50cb76d8ebbaa8e45a518c43196223f2, type: 3}
   cam: {fileID: 5918258808937209574}
 --- !u!114 &7890312897934663485

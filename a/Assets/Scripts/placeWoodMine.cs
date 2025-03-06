@@ -3,13 +3,15 @@ using UnityEngine;
 // the name of this class isn't really right cuz its more for spawning every building and not just one btw
 public class placeWoodMine  : MonoBehaviour
 {
-    public GameObject woodMine, farm, house; // reference to the prefabs that get spawned
+    public GameObject woodMine, farm, house, stoneMine; // reference to the prefabs that get spawned
     public Stats stats;
     private int woodCostFarm = 15;
     private int woodCostHouse = 20;
     private int woodCostWoodcutter = 10;
     private int humanCostFarm = 2;
     private int humanCostWoodcutter = 10;
+    private int stoneCostStoneMine = 22;
+    private int humanCostStoneMine = 5;
 
 
     void Start()
@@ -31,6 +33,10 @@ public class placeWoodMine  : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3)) // place the house and register it for saving when the player presses three
         {
             PlaceHouse();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            PlaceStoneMine();
         }
     }
     
@@ -58,6 +64,34 @@ public class placeWoodMine  : MonoBehaviour
             }
             
             Instantiate(woodMine, snappedPosition, Quaternion.identity); // place it if all conditions are met
+            cell.isOccupied = true;
+        }
+    }
+    
+    void PlaceStoneMine()
+    {
+        if (stoneMine == null) return; // Prevent errors if prefab is not assigned
+
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get the mouse pos
+        
+        // snap to grid by rounding to the nearest integer
+        Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y)); // get the snapped position
+        Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // check if theres something bellow
+        Tile cell = hit.GetComponent<Tile>(); // get the Tile bellow
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == true)
+        {
+            if (stats.stoneInStock >= stoneCostStoneMine && stats.humansInStock >= humanCostStoneMine)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.stoneInStock -= stoneCostStoneMine;
+                stats.humansInStock -= humanCostStoneMine;
+            }
+            else
+            {
+                return;
+            }
+            
+            Instantiate(stoneMine, snappedPosition, Quaternion.identity); // place it if all conditions are met
             cell.isOccupied = true;
         }
     }

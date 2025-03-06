@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class woodMinerScript : MonoBehaviour
+public class StoneMinerScript : MonoBehaviour
 {
     private Tile cell;
     public Stats stats;
-    public int woodCost = 10;
-    public int humanCost = 3;
+    public int stoneCost = 22;
+    public int humanCost = 5;
     
 
     void Start()
@@ -16,7 +16,7 @@ public class woodMinerScript : MonoBehaviour
         GameObject statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
         CheckBelow();
-        StartCoroutine("mineTree"); 
+        StartCoroutine("mineStone"); 
     }
     void OnDestroy()
     {
@@ -33,33 +33,32 @@ public class woodMinerScript : MonoBehaviour
             cell = hit.GetComponent<Tile>(); 
             if (cell != null)
             {
-                if (cell.isTree == true && cell.isOccupied == false)
+                if (cell.isTree == false && cell.isOccupied == false && cell.isStone == true)
                 {
-                    Debug.Log("Tree detected below!");
+                    Debug.Log("Stone detected below!");
 
                 }
                 else
                 {
-                    Debug.Log("No tree below.");
+                    Debug.Log("No Stone below.");
                 }
             }
         }
     }
 
 
-    IEnumerator mineTree()
+    IEnumerator mineStone()
     {
         while (true)
         {
-            stats.woodInStock++;
-        
-            yield return new WaitForSeconds(3);
+            stats.stoneInStock += 2;
+            yield return new WaitForSeconds(5);
         }
     }
 
     private void OnMouseDown()
     {
-        stats.woodInStock += 5;
+        stats.stoneInStock += 11;
         stats.humansInStock += humanCost;
         if (cell == null)
         {
