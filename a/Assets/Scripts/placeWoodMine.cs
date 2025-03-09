@@ -9,7 +9,7 @@ public class placeWoodMine  : MonoBehaviour
     private int woodCostHouse = 20;
     private int woodCostWoodcutter = 10;
     private int humanCostFarm = 2;
-    private int humanCostWoodcutter = 10;
+    private int humanCostWoodcutter = 3;
     private int stoneCostStoneMine = 22;
     private int humanCostStoneMine = 5;
 

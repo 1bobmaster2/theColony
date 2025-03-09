@@ -2,8 +2,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class WindowMove : MonoBehaviour, IDragHandler {
-    public void OnDrag(PointerEventData eventData)
+    [SerializeField] RectTransform parent;
+    [SerializeField] Canvas canvas;
+
+    public void Start()
     {
-        Debug.Log("skibidi");
+        if (canvas == null)
+        {
+            GameObject canvasObj = GameObject.FindWithTag("canvas");
+            canvas = canvasObj.GetComponent<Canvas>();
+        }
+    }
+    
+    public void OnDrag(PointerEventData eventData1)
+    {
+        parent.anchoredPosition += eventData1.delta / canvas.scaleFactor;
     }
 }

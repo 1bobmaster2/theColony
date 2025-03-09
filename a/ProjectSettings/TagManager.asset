@@ -10,6 +10,7 @@ TagManager:
   - humansLabel
   - Tile
   - doesNotGetDeactivated
+  - canvas
   layers:
   - Default
   - TransparentFX

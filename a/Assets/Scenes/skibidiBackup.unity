@@ -260,6 +260,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7050573896061064268}
     m_Modifications:
+    - target: {fileID: -6012406315501414015, guid: b6a180e1e86246c469bbc858ff5ab5c2, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1859494723}
     - target: {fileID: 2844431992634528221, guid: b6a180e1e86246c469bbc858ff5ab5c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3129,7 +3133,7 @@ GameObject:
   - component: {fileID: 7993746559426031167}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
