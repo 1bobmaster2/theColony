@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class WindowMove : MonoBehaviour, IDragHandler {
+public class WindowMove : MonoBehaviour, IDragHandler, IPointerDownHandler {
     [SerializeField] RectTransform parent;
     [SerializeField] Canvas canvas;
 
@@ -17,5 +17,10 @@ public class WindowMove : MonoBehaviour, IDragHandler {
     public void OnDrag(PointerEventData eventData1)
     {
         parent.anchoredPosition += eventData1.delta / canvas.scaleFactor;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        parent.SetAsLastSibling();
     }
 }
