@@ -11,10 +11,12 @@ public class GiveData : MonoBehaviour
     private int humanCost;
     private int stoneCost;
     private string parentName;
+    public Canvas canvas;
     
     public void CreateTheObjectAndGiveData()
     {
         string parentName = gameObject.name;
+        Debug.LogError("ohio ligma balls");
         switch (parentName)
         {
             case "CreateWoodCutterInfo":
@@ -29,6 +31,7 @@ public class GiveData : MonoBehaviour
                 humanCost = 3;
                 GameObject go = Instantiate(window);
                 GetSetData gsd = go.GetComponent<GetSetData>();
+                go.transform.SetParent(canvas.transform, false);
                 gsd.hasData = hasData;
                 gsd.canBePlacedOn = canBePlacedOn;
                 gsd.buildingName = buildingName;
@@ -47,6 +50,7 @@ public class GiveData : MonoBehaviour
                 humanCost = 2;
                 GameObject go1 = Instantiate(window);
                 GetSetData gsd1 = go1.GetComponent<GetSetData>();
+                go1.transform.SetParent(canvas.transform, false);
                 gsd1.hasData = hasData;
                 gsd1.canBePlacedOn = canBePlacedOn;
                 gsd1.buildingName = buildingName;
@@ -65,6 +69,7 @@ public class GiveData : MonoBehaviour
                 stoneCost = 22;
                 GameObject go2 = Instantiate(window);
                 GetSetData gsd2 = go2.GetComponent<GetSetData>();
+                go2.transform.SetParent(canvas.transform, false);
                 gsd2.hasData = hasData;
                 gsd2.canBePlacedOn = canBePlacedOn;
                 gsd2.buildingName = buildingName;
@@ -82,10 +87,14 @@ public class GiveData : MonoBehaviour
                 woodCost = 20;
                 GameObject go3 = Instantiate(window);
                 GetSetData gsd3 = go3.GetComponent<GetSetData>();
+                go3.transform.SetParent(canvas.transform, false);
                 gsd3.hasData = hasData;
                 gsd3.canBePlacedOn = canBePlacedOn;
                 gsd3.buildingName = buildingName;
                 gsd3.woodCost = woodCost;
+                break;
+            default:
+                Debug.LogError("hi");
                 break;
         }
     }
