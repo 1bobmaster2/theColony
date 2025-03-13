@@ -20,6 +20,7 @@ public class GiveData : MonoBehaviour
         switch (parentName)
         {
             case "CreateWoodCutterInfo":
+                hasData.Clear();
                 hasData.Add(true);
                 hasData.Add(true);
                 hasData.Add(true);
@@ -39,6 +40,7 @@ public class GiveData : MonoBehaviour
                 gsd.humanCost = humanCost;
                 break;
             case "CreateFarmInfo":
+                hasData.Clear();
                 hasData.Add(true);
                 hasData.Add(true);
                 hasData.Add(true);
@@ -58,6 +60,7 @@ public class GiveData : MonoBehaviour
                 gsd1.humanCost = humanCost;
                 break;
             case "CreateStoneCollectorInfo":
+                hasData.Clear();
                 hasData.Add(true);
                 hasData.Add(false); // this is wood
                 hasData.Add(true);
@@ -77,6 +80,7 @@ public class GiveData : MonoBehaviour
                 gsd2.humanCost = humanCost;
                 break;
             case "CreateHouseInfo":
+                hasData.Clear();
                 hasData.Add(true);
                 hasData.Add(true);
                 hasData.Add(false);
