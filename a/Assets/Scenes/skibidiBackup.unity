@@ -1879,6 +1879,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458260880}
   m_CullTransparentMesh: 1
+--- !u!1 &1478192366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478192367}
+  - component: {fileID: 1478192370}
+  - component: {fileID: 1478192369}
+  - component: {fileID: 1478192368}
+  m_Layer: 5
+  m_Name: ResearchPointsLabel
+  m_TagString: foodLabel
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1478192367
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478192366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7050573896061064268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 592, y: -4.838135}
+  m_SizeDelta: {x: 89.4803, y: 56.113}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1478192368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478192366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9b511abd93a314596192e9459b3b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabName: 
+  id: 
+--- !u!114 &1478192369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478192366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.3239298, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b328d1902bf095d4ca9c86ef082126f2, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0
+--- !u!222 &1478192370
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478192366}
+  m_CullTransparentMesh: 1
 --- !u!1 &1707598901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.91, y: 0.72}
   m_AnchorMax: {x: 0.91, y: 0.72}
-  m_AnchoredPosition: {x: 0.4810783, y: -0.396271}
+  m_AnchoredPosition: {x: 0.4810791, y: -0.39627075}
   m_SizeDelta: {x: 416.6889, y: 13.389061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274445348744595177
@@ -2489,6 +2583,7 @@ MonoBehaviour:
   humanText: {fileID: 1356913127556265463}
   foodText: {fileID: 4864676917523361709}
   stoneText: {fileID: 568595747}
+  researchPointsText: {fileID: 1478192369}
   stats: {fileID: 0}
 --- !u!222 &582368907176202618
 CanvasRenderer:
@@ -3710,7 +3805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.91047925, y: 0.3178148}
   m_AnchorMax: {x: 0.91047925, y: 0.3178148}
-  m_AnchoredPosition: {x: -0.279052, y: -0.2996521}
+  m_AnchoredPosition: {x: -0.27905273, y: -0.2996521}
   m_SizeDelta: {x: 417.0089, y: 13.117756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4864676917523361709
@@ -4365,6 +4460,7 @@ MonoBehaviour:
   foodInStock: 50
   totalhumansInStock: 0
   stoneInStock: 30
+  researchPointsInStock: 0
 --- !u!114 &6691281673232517108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4533,6 +4629,7 @@ RectTransform:
   - {fileID: 4428553082869017346}
   - {fileID: 4158492011546119698}
   - {fileID: 2237250998945988880}
+  - {fileID: 1478192367}
   - {fileID: 6614826675145508942}
   - {fileID: 2509843969979315320}
   - {fileID: 6328863413576269719}
@@ -4911,8 +5008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleGO: {fileID: 4366854084808365232}
-  width: 100
-  height: 100
+  width: 10
+  height: 10
   tilePrefab: {fileID: 3749601321760393936, guid: 50cb76d8ebbaa8e45a518c43196223f2, type: 3}
   cam: {fileID: 5918258808937209574}
 --- !u!114 &7890312897934663485

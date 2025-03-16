@@ -38,6 +38,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         public int foodInStock;
         public int humansInStock;
         public int stoneInStock;
+        public int researchPointsInStock;
         public int totalhumansInStock;
         public float[] position;
     }
@@ -74,6 +75,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                 foodInStock = stats != null ? stats.foodInStock : 0,
                 humansInStock = stats != null ? stats.humansInStock : 0,
                 stoneInStock = stats != null ? stats.stoneInStock : 0,
+                researchPointsInStock = stats != null ? stats.researchPointsInStock : 0,
                 totalhumansInStock = stats != null ? stats.totalhumansInStock : 0,
                 position = pos
             };
@@ -105,6 +107,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                         data.foodInStock,
                         data.humansInStock,
                         data.stoneInStock,
+                        data.researchPointsInStock,
                         data.totalhumansInStock,
                         data.isTree,
                         data.isStone,
@@ -202,7 +205,7 @@ public class CreatingLoadingSaves : MonoBehaviour
 
     public void DeleteSaves()
     {
-        string[] files = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat");
+        string[] files = Directory.GetFiles(Application.persistentDataPath, "*.dat");
 
         foreach (string file in files)
         {

@@ -9,6 +9,7 @@ public class Stats : MonoBehaviour
     public int foodInStock;
     public int totalhumansInStock;
     public int stoneInStock;
+    public int researchPointsInStock;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +22,8 @@ public class Stats : MonoBehaviour
     void Update()
     {
         totalhumansInStock = humansInStock; // moved this to update
+
+        researchPointsInStock++; // debug line for testing saving
         
         if (Input.GetKeyDown(KeyCode.Space)) // log all of the stats, currently not useful, but im keeping it here
         {
