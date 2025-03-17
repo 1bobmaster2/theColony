@@ -3,7 +3,7 @@ using UnityEngine;
 // the name of this class isn't really right cuz its more for spawning every building and not just one btw
 public class placeWoodMine  : MonoBehaviour
 {
-    public GameObject woodMine, farm, house, stoneMine; // reference to the prefabs that get spawned
+    public GameObject woodMine, farm, house, stoneMine, researchFacility; // reference to the prefabs that get spawned
     public Stats stats;
     private int woodCostFarm = 15;
     private int woodCostHouse = 20;
@@ -12,6 +12,10 @@ public class placeWoodMine  : MonoBehaviour
     private int humanCostWoodcutter = 3;
     private int stoneCostStoneMine = 22;
     private int humanCostStoneMine = 5;
+
+    private int woodCostResearchFacility = 10;
+    private int stoneCostResearchFacility = 10;
+    private int humanCostResearchFacility = 5;
 
 
     void Start()
@@ -37,6 +41,10 @@ public class placeWoodMine  : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             PlaceStoneMine();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            PlaceResearchFacility();
         }
     }
     
@@ -155,6 +163,39 @@ public class placeWoodMine  : MonoBehaviour
         else
         {
             Debug.Log("did not place house");
+        }
+    }
+    
+    void PlaceResearchFacility()
+    {
+        // the comments from the PlaceTreeMine() apply here so i wont rewrite them, the same goes for place house
+        if (researchFacility == null) return;
+        
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y));
+        Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // reused woodMinerScript 13th line
+        Tile cell = hit.GetComponent<Tile>();
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
+        {
+            if (stats.woodInStock >= woodCostResearchFacility && stats.humansInStock >= humanCostResearchFacility && stats.stoneInStock >= stoneCostResearchFacility)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostResearchFacility;
+                stats.humansInStock -= humanCostResearchFacility;
+                stats.stoneInStock -= stoneCostResearchFacility;
+            }
+            else
+            {
+                return;
+            }
+            Instantiate(researchFacility, snappedPosition, Quaternion.identity); // Place prefab
+            cell.isOccupied = true;
+            Debug.Log("placed farm");
+        }
+        else
+        {
+            Debug.Log("did not placed farm");
         }
     }
 }

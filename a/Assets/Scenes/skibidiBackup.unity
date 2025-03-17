@@ -3875,6 +3875,7 @@ MonoBehaviour:
   farm: {fileID: 7879959070323112448, guid: df2c9b6a457a4934c977de8563d128cd, type: 3}
   house: {fileID: 5653481259836358935, guid: 420f67d64f8e3ab4ab22f31d07e851f8, type: 3}
   stoneMine: {fileID: 6868478275923223835, guid: 0d6e34b85df8f034e8f25a4ea50b9598, type: 3}
+  researchFacility: {fileID: 7879959070323112448, guid: 8a132c1f84ff5e242bb64d70154ff3b2, type: 3}
   stats: {fileID: 0}
 --- !u!224 &4640279851779631169
 RectTransform:
