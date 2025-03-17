@@ -22,8 +22,7 @@ public class Stats : MonoBehaviour
     void Update()
     {
         totalhumansInStock = humansInStock; // moved this to update
-
-        researchPointsInStock++; // debug line for testing saving
+        
         
         if (Input.GetKeyDown(KeyCode.Space)) // log all of the stats, currently not useful, but im keeping it here
         {
