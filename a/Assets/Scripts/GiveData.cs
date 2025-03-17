@@ -97,6 +97,28 @@ public class GiveData : MonoBehaviour
                 gsd3.buildingName = buildingName;
                 gsd3.woodCost = woodCost;
                 break;
+            case "CreateResearchInfo":
+                hasData.Clear();
+                hasData.Add(true);
+                hasData.Add(true);
+                hasData.Add(true);
+                hasData.Add(true); // this is stone cost btw
+                hasData.Add(true);
+                buildingName = "Research Facility";
+                canBePlacedOn = "Anywhere";
+                woodCost = 10;
+                stoneCost = 10;
+                humanCost = 5;
+                GameObject go4 = Instantiate(window);
+                GetSetData gsd4 = go4.GetComponent<GetSetData>();
+                go4.transform.SetParent(canvas.transform, false);
+                gsd4.hasData = hasData;
+                gsd4.canBePlacedOn = canBePlacedOn;
+                gsd4.buildingName = buildingName;
+                gsd4.woodCost = woodCost;
+                gsd4.stoneCost = stoneCost;
+                gsd4.humanCost = humanCost;
+                break;
             default:
                 Debug.LogError("hi");
                 break;

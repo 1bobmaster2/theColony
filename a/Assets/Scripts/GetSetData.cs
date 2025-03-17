@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GetSetData : MonoBehaviour
 {
 
-    public List<bool> hasData = new List<bool>();
+    public List<bool> hasData = new();
 
     public string buildingName, canBePlacedOn;
     public int woodCost, humanCost, stoneCost;
