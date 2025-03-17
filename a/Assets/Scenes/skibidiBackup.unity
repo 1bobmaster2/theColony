@@ -3135,7 +3135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7808736e480f83648a5a7cb690ea68d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 2
+  cam: {fileID: 3144273664364504955}
 --- !u!114 &855286690986771221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4895,6 +4896,7 @@ GameObject:
   - component: {fileID: 5396470964550877105}
   - component: {fileID: 1324601229838733665}
   - component: {fileID: 678445172455767876}
+  - component: {fileID: 6586134304735028181}
   - component: {fileID: 4341595079677281453}
   m_Layer: 0
   m_Name: Main Camera
@@ -4903,6 +4905,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6586134304735028181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6586134304735028180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25db6734402d9ee4a804233bcca86f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 3144273664364504955}
+  zoomInValue: 0
+  zoomMultiplier: -3
 --- !u!114 &6603440767765743460
 MonoBehaviour:
   m_ObjectHideFlags: 0
