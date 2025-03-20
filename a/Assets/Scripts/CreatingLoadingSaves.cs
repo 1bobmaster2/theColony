@@ -46,7 +46,6 @@ public class CreatingLoadingSaves : MonoBehaviour
     
     public async void ProcessGameObjects()
     {
-        
         GameObject[] allGo = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
         List<SaveDataContainer> saveDataList = new List<SaveDataContainer>();
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class EscMenu : MonoBehaviour
 {
     [SerializeField] GameObject escMenu;
+    [SerializeField] GameObject askToDelete;
     bool escMenuOpen;
 
     private void Update()
@@ -17,6 +18,7 @@ public class EscMenu : MonoBehaviour
         {
             escMenu.SetActive(false);
             escMenuOpen = false;
+            askToDelete.SetActive(false);
             ToggleUnpause();
         }
     }
