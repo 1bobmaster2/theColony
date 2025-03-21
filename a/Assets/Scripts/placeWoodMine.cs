@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 // the name of this class isn't really right cuz its more for spawning every building and not just one btw
@@ -17,6 +18,7 @@ public class placeWoodMine  : MonoBehaviour
     private int stoneCostResearchFacility = 10;
     private int humanCostResearchFacility = 5;
 
+    public EventReference PlaceSound;
 
     void Start()
     {
@@ -72,6 +74,7 @@ public class placeWoodMine  : MonoBehaviour
             }
             
             Instantiate(woodMine, snappedPosition, Quaternion.identity); // place it if all conditions are met
+            PlayPlaceSound();
             cell.isOccupied = true;
         }
     }
@@ -100,6 +103,7 @@ public class placeWoodMine  : MonoBehaviour
             }
             
             Instantiate(stoneMine, snappedPosition, Quaternion.identity); // place it if all conditions are met
+            PlayPlaceSound();
             cell.isOccupied = true;
         }
     }
@@ -127,6 +131,7 @@ public class placeWoodMine  : MonoBehaviour
                 return;
             }
             Instantiate(farm, snappedPosition, Quaternion.identity); // Place prefab
+            PlayPlaceSound();
             cell.isOccupied = true;
             Debug.Log("placed farm");
         }
@@ -157,6 +162,7 @@ public class placeWoodMine  : MonoBehaviour
                 return;
             }
             Instantiate(house, snappedPosition, Quaternion.identity); // Place prefab
+            PlayPlaceSound();
             cell.isOccupied = true;
             Debug.Log("placed house");
         }
@@ -190,6 +196,7 @@ public class placeWoodMine  : MonoBehaviour
                 return;
             }
             Instantiate(researchFacility, snappedPosition, Quaternion.identity); // Place prefab
+            PlayPlaceSound();
             cell.isOccupied = true;
             Debug.Log("placed farm");
         }
@@ -197,5 +204,12 @@ public class placeWoodMine  : MonoBehaviour
         {
             Debug.Log("did not placed farm");
         }
+    }
+
+    void PlayPlaceSound()
+    {
+        FMOD.Studio.EventInstance PlaySoundInstance = RuntimeManager.CreateInstance(PlaceSound);
+        PlaySoundInstance.start();
+        PlaySoundInstance.release();
     }
 }

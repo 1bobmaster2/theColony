@@ -6677,6 +6677,13 @@ MonoBehaviour:
   stoneMine: {fileID: 6868478275923223835, guid: 0d6e34b85df8f034e8f25a4ea50b9598, type: 3}
   researchFacility: {fileID: 7879959070323112448, guid: 8a132c1f84ff5e242bb64d70154ff3b2, type: 3}
   stats: {fileID: 0}
+  PlaceSound:
+    Guid:
+      Data1: 807954765
+      Data2: 1248306792
+      Data3: -97362517
+      Data4: -1386670473
+    Path: event:/PlaceSound
 --- !u!224 &4640279851779631169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7265,7 +7272,6 @@ GameObject:
   - component: {fileID: 6586134304735028181}
   - component: {fileID: 4341595079677281453}
   - component: {fileID: 6586134304735028182}
-  - component: {fileID: 6586134304735028183}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7302,37 +7308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
---- !u!114 &6586134304735028183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586134304735028180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 807954765
-      Data2: 1248306792
-      Data3: -97362517
-      Data4: -1386670473
-    Path: event:/New Event
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!114 &6603440767765743460
 MonoBehaviour:
   m_ObjectHideFlags: 0
