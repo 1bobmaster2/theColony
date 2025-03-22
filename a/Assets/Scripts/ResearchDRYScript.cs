@@ -12,9 +12,9 @@ public class ResearchDRYScript : MonoBehaviour
         stats = statsObject.GetComponent<Stats>();
     }
     
-    public void AssingResearchPoints(int researchCost)
+    public void AssingResearchPoints()
     {
-        if (stats.researchPointsInStock - researchCost <= 0)
+        if (stats.researchPointsInStock >= researchCost )
         {
             stats.researchPointsInStock -= researchCost;
             Debug.Log("Researched");
