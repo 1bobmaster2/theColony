@@ -16,9 +16,10 @@ public class PlayerData // this class had to be renamed because of a bug
     public bool isStone;
     public float[] position;
     public string name;
+    public bool isResearched;
     
     public PlayerData(string name, int woodOnTree, int woodInStock, int foodInStock,
-        int humansInStock, int stoneInStock, int researchPointsInStock, int totalhumansInStock, bool isTree, bool isStone, float[] position)
+        int humansInStock, int stoneInStock, int researchPointsInStock, int totalhumansInStock, bool isTree, bool isStone, float[] position, bool isResearched)
     {
         // set the variables that are required for saving in the constructor
         this.name = name;
@@ -32,5 +33,6 @@ public class PlayerData // this class had to be renamed because of a bug
         this.isTree = isTree;
         this.isStone = isStone;
         this.position = position;
+        this.isResearched = isResearched;
     }
 }

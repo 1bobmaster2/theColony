@@ -48,6 +48,7 @@ public static class Saving // this class had to be renamed cuz of a bug
         // get the stats, tile and the position
         Stats stats = go.GetComponent<Stats>();
         Tile tile = go.GetComponent<Tile>();
+        ResearchDRYScript researchScript = go.GetComponent<ResearchDRYScript>();
         float[] position = { go.transform.position.x, go.transform.position.y, go.transform.position.z };
         
         
@@ -68,8 +69,9 @@ public static class Saving // this class had to be renamed cuz of a bug
         int totalhumansInStock = stats != null ? stats.totalhumansInStock : 0;
         bool isTree = tile != null && tile.isTree;
         bool isStone = tile != null && tile.isStone;
+        bool isResearched = researchScript != null && researchScript.isResearched;
         // then, create new playerData with all  the previous variables
-        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, stoneInStock, researchPointsInStock, isTree, isStone, position);
+        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, stoneInStock, researchPointsInStock, isTree, isStone, position, isResearched);
         // create a binary formatter and save the go with the prefab name
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/" + prefabName + ".dat";
@@ -146,6 +148,12 @@ public static class Saving // this class had to be renamed cuz of a bug
                 {
                     tile.isTree = data.isTree;
                     tile.woodOnTree = data.woodOnTree;
+                }
+                
+                ResearchDRYScript researchScript = existingObject.GetComponent<ResearchDRYScript>();
+                if (researchScript != null)
+                {
+                    researchScript.isResearched = data.isResearched;
                 }
             }
         }

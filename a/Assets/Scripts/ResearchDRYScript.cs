@@ -1,13 +1,14 @@
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
-
+using System;
+[Serializable]
 public class ResearchDRYScript : MonoBehaviour
 {
     [SerializeField] private int researchCost;
     private Stats stats;
     private GameObject statsObject;
-    private bool isResearched;
+    public bool isResearched;
     public List<ResearchDRYScript> requiredResearch = new List<ResearchDRYScript>();
     private bool canBeResearched = true;
 
@@ -15,9 +16,14 @@ public class ResearchDRYScript : MonoBehaviour
     {
         statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
+
         
     }
+
+
     
+
+
     public void AssingResearchPoints()
     {
         canBeResearched = true;

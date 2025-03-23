@@ -41,6 +41,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         public int researchPointsInStock;
         public int totalhumansInStock;
         public float[] position;
+        public bool isResearched;
     }
     
     
@@ -60,6 +61,8 @@ public class CreatingLoadingSaves : MonoBehaviour
             Tile tile = obj.GetComponent<Tile>();
             
             Stats stats = obj.GetComponent<Stats>();
+            
+            ResearchDRYScript researchScript = obj.GetComponent<ResearchDRYScript>();
             float[] pos = { obj.transform.position.x, obj.transform.position.y, obj.transform.position.z };
 
             SaveDataContainer data = new SaveDataContainer
@@ -76,7 +79,8 @@ public class CreatingLoadingSaves : MonoBehaviour
                 stoneInStock = stats != null ? stats.stoneInStock : 0,
                 researchPointsInStock = stats != null ? stats.researchPointsInStock : 0,
                 totalhumansInStock = stats != null ? stats.totalhumansInStock : 0,
-                position = pos
+                position = pos,
+                isResearched = researchScript != null && researchScript.isResearched
             };
 
             saveDataList.Add(data);
@@ -110,7 +114,8 @@ public class CreatingLoadingSaves : MonoBehaviour
                         data.totalhumansInStock,
                         data.isTree,
                         data.isStone,
-                        data.position
+                        data.position,
+                        data.isResearched
                     );
 
                     
@@ -249,6 +254,12 @@ public class CreatingLoadingSaves : MonoBehaviour
                         tile.isTree = data.isTree; 
                         tile.woodOnTree = data.woodOnTree;
                         tile.isStone = data.isStone;
+                    }
+                    
+                    ResearchDRYScript researchScript = existingObject.GetComponent<ResearchDRYScript>();
+                    if (researchScript != null)
+                    {
+                        researchScript.isResearched = data.isResearched;
                     }
                 }
                 else
