@@ -47,7 +47,9 @@ public class CreatingLoadingSaves : MonoBehaviour
     
     public async void ProcessGameObjects()
     {
-        GameObject[] allGo = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+        GameObject[] allGo = Resources.FindObjectsOfTypeAll<GameObject>(); // updated, also now gets objects that are disabled! do you like it guys? 
+        // are you proud of me???? :3
+
         List<SaveDataContainer> saveDataList = new List<SaveDataContainer>();
 
         
