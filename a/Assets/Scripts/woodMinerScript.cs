@@ -53,7 +53,7 @@ public class woodMinerScript : MonoBehaviour
         {
             stats.woodInStock++;
         
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(stats.globalWoodMinerCooldown);
         }
     }
 

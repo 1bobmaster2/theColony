@@ -578,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchCost: 1300
   isResearched: 0
+  theMethodToRun: 
   requiredResearch:
   - {fileID: 1114490289}
   - {fileID: 1961446865}
@@ -2354,6 +2355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchCost: 900
   isResearched: 0
+  theMethodToRun: 
   requiredResearch:
   - {fileID: 1961446865}
 --- !u!114 &1114490290
@@ -3386,6 +3388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchCost: 1200
   isResearched: 0
+  theMethodToRun: upgradeWoodcutter
   requiredResearch:
   - {fileID: 1961446865}
   - {fileID: 1520315576}
@@ -3814,6 +3817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchCost: 800
   isResearched: 0
+  theMethodToRun: upgradeWoodcutter
   requiredResearch:
   - {fileID: 1961446865}
 --- !u!114 &1520315577
@@ -4834,6 +4838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchCost: 500
   isResearched: 0
+  theMethodToRun: 
   requiredResearch: []
 --- !u!114 &1961446866
 MonoBehaviour:
@@ -7242,6 +7247,7 @@ MonoBehaviour:
   totalhumansInStock: 0
   stoneInStock: 30
   researchPointsInStock: 0
+  globalWoodMinerCooldown: 3
 --- !u!114 &6691281673232517108
 MonoBehaviour:
   m_ObjectHideFlags: 0

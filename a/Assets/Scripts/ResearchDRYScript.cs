@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using System.Reflection;
+
 [Serializable]
 public class ResearchDRYScript : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class ResearchDRYScript : MonoBehaviour
     private Stats stats;
     private GameObject statsObject;
     public bool isResearched;
+    public string theMethodToRun;
     public List<ResearchDRYScript> requiredResearch = new List<ResearchDRYScript>();
     private bool canBeResearched = true;
 
@@ -16,14 +19,16 @@ public class ResearchDRYScript : MonoBehaviour
     {
         statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
-
-        
+        if (isResearched)
+        {
+            Invoke(nameof(theMethodToRun), 3f);
+        }
+        else
+        {
+            Debug.Log("this isnt researched skibidi so it cant invoke lol");
+        }
     }
-
-
     
-
-
     public void AssingResearchPoints()
     {
         canBeResearched = true;
@@ -46,10 +51,24 @@ public class ResearchDRYScript : MonoBehaviour
             stats.researchPointsInStock -= researchCost;
             isResearched = true;
             Debug.Log("Researched");
+            runTheMethod();
         }
         else
         {
             Debug.Log("Did not research");
         }
+    }
+
+    void runTheMethod()
+    {
+        MethodInfo method = GetType().GetMethod(theMethodToRun, BindingFlags.NonPublic | BindingFlags.Instance);
+        
+        method.Invoke(this, null);
+    }
+
+    void upgradeWoodcutter()
+    {
+        stats.globalWoodMinerCooldown = stats.globalWoodMinerCooldown - 0.5f;
+        Debug.Log("Great! the current cooldown is: " + stats.globalWoodMinerCooldown);
     }
 }
