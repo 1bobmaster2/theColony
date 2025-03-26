@@ -11,6 +11,7 @@ public class ResearchDRYScript : MonoBehaviour
     private Stats stats;
     private GameObject statsObject;
     public bool isResearched;
+    private bool isResearchIsApplied = false;
     public string theMethodToRun;
     public List<ResearchDRYScript> requiredResearch = new List<ResearchDRYScript>();
     private bool canBeResearched = true;
@@ -19,16 +20,21 @@ public class ResearchDRYScript : MonoBehaviour
     {
         statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
+        Invoke(nameof(CheckAndApply), 3f);
+    }
+
+    void CheckAndApply()
+    {
         if (isResearched)
         {
-            Invoke(nameof(theMethodToRun), 3f);
+            runTheMethod();
         }
         else
         {
-            Debug.Log("this isnt researched skibidi so it cant invoke lol");
+            Debug.Log("hehe");
         }
     }
-    
+
     public void AssingResearchPoints()
     {
         canBeResearched = true;
