@@ -74,7 +74,12 @@ public class ResearchDRYScript : MonoBehaviour
 
     void upgradeWoodcutter()
     {
-        stats.globalWoodMinerCooldown = stats.globalWoodMinerCooldown - 0.5f;
+        stats.globalWoodMinerCooldown -= 0.5f;
         Debug.Log("Great! the current cooldown is: " + stats.globalWoodMinerCooldown);
+    }
+
+    void upgradeStonecutter()
+    {
+        stats.globalStoneMinerCooldown -= 0.5f;
     }
 }

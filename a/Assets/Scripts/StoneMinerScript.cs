@@ -52,7 +52,7 @@ public class StoneMinerScript : MonoBehaviour
         while (true)
         {
             stats.stoneInStock += 2;
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(stats.globalWoodMinerCooldown);
         }
     }
 
