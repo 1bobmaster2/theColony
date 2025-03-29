@@ -9,8 +9,9 @@ public class woodMinerScript : MonoBehaviour
     public Stats stats;
     public int woodCost = 10;
     public int humanCost = 3;
-    
 
+
+    [SerializeField] private LayerMask layerMask;
     void Start()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager");
@@ -26,7 +27,7 @@ public class woodMinerScript : MonoBehaviour
     void CheckBelow()
     {
         Vector2 belowPosition = new Vector2(transform.position.x, transform.position.y); // Get the cell below
-        Collider2D hit = Physics2D.OverlapPoint(belowPosition); // Detect object at that position
+        Collider2D hit = Physics2D.OverlapPoint(belowPosition, layerMask); // Detect object at that position
 
         if (hit != null)
         {

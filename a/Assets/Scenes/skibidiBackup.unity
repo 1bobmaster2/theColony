@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 132924908}
   - component: {fileID: 132924907}
   - component: {fileID: 132924906}
+  - component: {fileID: 132924909}
   m_Layer: 5
   m_Name: Panel-Orange (a) (2)
   m_TagString: Untagged
@@ -598,6 +599,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132924904}
   m_CullTransparentMesh: 1
+--- !u!225 &132924909
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132924904}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &146998655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1149,7 @@ GameObject:
   - component: {fileID: 323204419}
   - component: {fileID: 323204418}
   - component: {fileID: 323204417}
+  - component: {fileID: 323204420}
   m_Layer: 5
   m_Name: Panel-Blue (a) (1)
   m_TagString: Untagged
@@ -1214,6 +1228,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323204415}
   m_CullTransparentMesh: 1
+--- !u!225 &323204420
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323204415}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &344600960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,13 +1250,14 @@ GameObject:
   m_Component:
   - component: {fileID: 344600961}
   - component: {fileID: 344600962}
+  - component: {fileID: 344600963}
   m_Layer: 5
   m_Name: Research
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &344600961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1270,6 +1297,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: 
   id: 
+--- !u!225 &344600963
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344600960}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &353544244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,7 +2109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &888635801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3103,6 +3142,7 @@ GameObject:
   - component: {fileID: 1224184804}
   - component: {fileID: 1224184803}
   - component: {fileID: 1224184802}
+  - component: {fileID: 1224184805}
   m_Layer: 5
   m_Name: Panel-Orange (a) (4)
   m_TagString: Untagged
@@ -3181,6 +3221,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224184800}
   m_CullTransparentMesh: 1
+--- !u!225 &1224184805
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224184800}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1254488326
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,6 +4641,7 @@ GameObject:
   - component: {fileID: 1742688955}
   - component: {fileID: 1742688954}
   - component: {fileID: 1742688953}
+  - component: {fileID: 1742688956}
   m_Layer: 5
   m_Name: Panel-Orange (a) (1)
   m_TagString: Untagged
@@ -4667,6 +4720,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742688951}
   m_CullTransparentMesh: 1
+--- !u!225 &1742688956
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742688951}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1768638914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,6 +5261,7 @@ GameObject:
   - component: {fileID: 1993224227}
   - component: {fileID: 1993224226}
   - component: {fileID: 1993224225}
+  - component: {fileID: 1993224228}
   m_Layer: 5
   m_Name: Panel-Orange (a) (3)
   m_TagString: Untagged
@@ -5274,6 +5340,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993224223}
   m_CullTransparentMesh: 1
+--- !u!225 &1993224228
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993224223}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2041463697
 GameObject:
   m_ObjectHideFlags: 0
@@ -6870,9 +6948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c1724ce3917e54ca26cb82d80c462d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodMine: {fileID: 6868478275923223835, guid: 30a72fce60e40154e80457b9eb3304fd, type: 3}
-  farm: {fileID: 7879959070323112448, guid: df2c9b6a457a4934c977de8563d128cd, type: 3}
-  house: {fileID: 5653481259836358935, guid: 420f67d64f8e3ab4ab22f31d07e851f8, type: 3}
+  woodMine: {fileID: 6868478275923223835, guid: 6f3de7d6a9deab4498064b73cd967a0e, type: 3}
+  farm: {fileID: 7879959070323112448, guid: 53c13dc3c9e13924b855d32715be432a, type: 3}
+  house: {fileID: 5653481259836358935, guid: 9e2faa03cbf7dc341913ed14b5e87511, type: 3}
   stoneMine: {fileID: 6868478275923223835, guid: 0d6e34b85df8f034e8f25a4ea50b9598, type: 3}
   researchFacility: {fileID: 7879959070323112448, guid: 8a132c1f84ff5e242bb64d70154ff3b2, type: 3}
   stats: {fileID: 0}
@@ -8095,7 +8173,7 @@ MonoBehaviour:
   exampleGO: {fileID: 4366854084808365232}
   width: 100
   height: 100
-  tilePrefab: {fileID: 3749601321760393936, guid: 50cb76d8ebbaa8e45a518c43196223f2, type: 3}
+  tilePrefab: {fileID: 3749601321760393936, guid: 51ea67975e9e18a4d900b6d4ce8aae84, type: 3}
   cam: {fileID: 5918258808937209574}
 --- !u!114 &7890312897934663485
 MonoBehaviour:

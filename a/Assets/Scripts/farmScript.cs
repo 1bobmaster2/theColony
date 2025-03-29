@@ -8,7 +8,7 @@ public class farmScript : MonoBehaviour
     public int woodCost = 15; //cost
     public int humanCost = 2; //cost  
 
-
+    [SerializeField] LayerMask layerMask;
     void Awake()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
@@ -25,7 +25,7 @@ public class farmScript : MonoBehaviour
     void CheckBelow()
     {
         Vector2 belowPosition = new Vector2(transform.position.x, transform.position.y); // get the cell below
-        Collider2D hit = Physics2D.OverlapPoint(belowPosition); // check if there is something bellow
+        Collider2D hit = Physics2D.OverlapPoint(belowPosition, layerMask); // check if there is something bellow
         if (hit == null)
         {
             Debug.LogError("farm did not found something below :(");
@@ -45,16 +45,18 @@ public class farmScript : MonoBehaviour
     
     private void OnMouseDown()
     {
+        Debug.Log("click lol");
         // removing the farm and giving the cost back
         stats.woodInStock += 7;
         stats.humansInStock += humanCost;
         if (cell == null)
         {
             Debug.Log("cell is null!");
-            return;
         }
-
-        cell.isOccupied = false; // make the cell unoccupied
+        else
+        {
+            cell.isOccupied = false; // make the cell unoccupied
+        }
 
         Destroy(gameObject);
     }

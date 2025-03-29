@@ -9,7 +9,7 @@ public class ResearchScript : MonoBehaviour
     public int stoneCost = 10;
     public int humanCost = 5; //cost  
 
-
+    [SerializeField] LayerMask layerMask;
     void Awake()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
@@ -26,7 +26,7 @@ public class ResearchScript : MonoBehaviour
     void CheckBelow()
     {
         Vector2 belowPosition = new Vector2(transform.position.x, transform.position.y); // get the cell below
-        Collider2D hit = Physics2D.OverlapPoint(belowPosition); // check if there is something bellow
+        Collider2D hit = Physics2D.OverlapPoint(belowPosition, layerMask); // check if there is something bellow
         if (hit == null)
         {
             Debug.LogError("farm did not found something below :(");

@@ -10,7 +10,7 @@ public class StoneMinerScript : MonoBehaviour
     public int stoneCost = 22;
     public int humanCost = 5;
     
-
+    [SerializeField] LayerMask layerMask;
     void Start()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager");
@@ -26,7 +26,7 @@ public class StoneMinerScript : MonoBehaviour
     void CheckBelow()
     {
         Vector2 belowPosition = new Vector2(transform.position.x, transform.position.y); // Get the cell below
-        Collider2D hit = Physics2D.OverlapPoint(belowPosition); // Detect object at that position
+        Collider2D hit = Physics2D.OverlapPoint(belowPosition, layerMask); // Detect object at that position
 
         if (hit != null)
         {
