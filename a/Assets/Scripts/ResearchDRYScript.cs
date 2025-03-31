@@ -7,7 +7,7 @@ using System.Reflection;
 [Serializable]
 public class ResearchDRYScript : MonoBehaviour
 {
-    [SerializeField] private int researchCost;
+    public int researchCost;
     private Stats stats;
     private GameObject statsObject;
     public bool isResearched;
