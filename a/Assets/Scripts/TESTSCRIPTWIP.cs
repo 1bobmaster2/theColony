@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TESTSCRIPTWIP : MonoBehaviour
 {
-    public void Click()
+    public void Click(BaseEventData bed)
     {
-        Debug.Log("TESTSCRIPTWIP clicked");
+        PointerEventData ped = (PointerEventData)bed;
+        Debug.Log("Button: "+ped.pointerId);
     }
 }
