@@ -188,6 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d05dc1b3b7da64b8b85a2f73539dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  researchPointsText: {fileID: 1247820870958198342}
+  researchPoints: 0
 --- !u!1 &3991566223432022364
 GameObject:
   m_ObjectHideFlags: 0

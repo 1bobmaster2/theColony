@@ -22,6 +22,18 @@ public class ResearchDRYScript : MonoBehaviour
     
     [SerializeField] private GameObject researchWindowObject;
 
+    public void OnRightClick(BaseEventData bed)
+    {
+        PointerEventData ped = (PointerEventData)bed;
+        if (ped.button.ToString() == "Right")
+        {
+            Debug.Log("right clicked");
+            GameObject go = Instantiate(researchWindowObject, new Vector2(1158, 507), Quaternion.identity, canvasTransform);
+            SeResearchData researchData = go.GetComponent<SeResearchData>();
+            researchData.researchPoints = researchCost;
+        }
+    }
+    
     void Start()
     {
         GameObject canvas = GameObject.FindWithTag("canvas");
