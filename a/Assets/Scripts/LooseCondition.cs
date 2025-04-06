@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -40,6 +41,7 @@ public class LooseCondition : MonoBehaviour
             stats.foodInStock -= stats.totalhumansInStock;
             if (stats.foodInStock <= 0)
             {
+                DeleteSaves();
                 SceneManager.LoadScene(0);
                 // stats.foodInStock = 50; // required for correct initaliziation of game but probably redundant now
             }
@@ -48,6 +50,16 @@ public class LooseCondition : MonoBehaviour
                 Debug.Log("survived"); // logging
             }
             
+        }
+    }
+
+    void DeleteSaves()
+    {
+        string[] files = Directory.GetFiles(Application.persistentDataPath, "*.dat");
+
+        foreach (string file in files)
+        {
+            File.Delete(file);
         }
     }
 }
