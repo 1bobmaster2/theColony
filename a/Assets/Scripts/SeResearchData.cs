@@ -8,6 +8,6 @@ public class SeResearchData : MonoBehaviour
 
     void Start()
     {
-        researchPointsText.text = researchPoints.ToString();
+        researchPointsText.text = "Cost: " + researchPoints;
     }
 }

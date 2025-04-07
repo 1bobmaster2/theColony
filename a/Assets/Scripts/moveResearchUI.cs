@@ -2,27 +2,35 @@ using UnityEngine;
 
 public class moveResearchUI : MonoBehaviour
 {
-    public int negateMove = -1;
+    private const int negateMove = -1;
     public int moveSpeed;
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 direction = Vector2.zero;
+
         if (Input.GetKey(KeyCode.W))
         {
-            MoveUI(Vector2.up);
+            direction += Vector2.up;
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            MoveUI(Vector2.down);
+            direction += Vector2.down;
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            MoveUI(Vector2.left);
+            direction += Vector2.left;
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            MoveUI(Vector2.right);
+            direction += Vector2.right;
+        }
+        
+        if (direction != Vector2.zero)
+        {
+            direction = direction.normalized;
+            MoveUI(direction);
         }
     }
 

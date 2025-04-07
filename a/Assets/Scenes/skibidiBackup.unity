@@ -7912,7 +7912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4061ca9d3b50cc4468e13bc3ba792963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negateMove: -1
   moveSpeed: 1000
 --- !u!114 &1829996569
 MonoBehaviour:
@@ -11167,11 +11166,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 785285898}
   - {fileID: 888635801}
-  - {fileID: 278813237}
   - {fileID: 504153822}
   - {fileID: 344600961}
+  - {fileID: 278813237}
+  - {fileID: 785285898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
