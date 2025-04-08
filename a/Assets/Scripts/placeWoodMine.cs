@@ -18,6 +18,8 @@ public class placeWoodMine  : MonoBehaviour
     private int stoneCostResearchFacility = 10;
     private int humanCostResearchFacility = 5;
 
+    public UI soundThingy;
+    
     public EventReference PlaceSound;
 
     void Start()
@@ -209,6 +211,7 @@ public class placeWoodMine  : MonoBehaviour
     void PlayPlaceSound()
     {
         FMOD.Studio.EventInstance PlaySoundInstance = RuntimeManager.CreateInstance(PlaceSound);
+        PlaySoundInstance.setVolume(soundThingy.SoundVolume);
         PlaySoundInstance.start();
         PlaySoundInstance.release();
     }
