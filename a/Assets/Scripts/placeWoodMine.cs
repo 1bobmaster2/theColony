@@ -4,7 +4,7 @@ using UnityEngine;
 // the name of this class isn't really right cuz its more for spawning every building and not just one btw
 public class placeWoodMine  : MonoBehaviour
 {
-    public GameObject woodMine, farm, house, stoneMine, researchFacility; // reference to the prefabs that get spawned
+    public GameObject woodMine, farm, house, stoneMine, researchFacility, artificialWoodMiner, artificialStoneMine; // reference to the prefabs that get spawned
     public Stats stats;
     private int woodCostFarm = 15;
     private int woodCostHouse = 20;
@@ -17,6 +17,12 @@ public class placeWoodMine  : MonoBehaviour
     private int woodCostResearchFacility = 10;
     private int stoneCostResearchFacility = 10;
     private int humanCostResearchFacility = 5;
+
+    private int woodCostArtificialWoodcutter = 15;
+    private int humanCostArtificialWoodcutter = 4;
+
+    private int stoneCostArtificialStoneMine = 25;
+    private int humanCostArtificialStoneMine = 6;
 
     public UI soundThingy;
     
@@ -49,6 +55,72 @@ public class placeWoodMine  : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             PlaceResearchFacility();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            PlaceArtificialTreeMine();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            PlaceArtificialStoneMine();
+        }
+    }
+
+    void PlaceArtificialStoneMine()
+    {
+        if (artificialStoneMine == null) return; // Prevent errors if prefab is not assigned
+
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get the mouse pos
+        
+        // snap to grid by rounding to the nearest integer
+        Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y)); // get the snapped position
+        Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // check if theres something bellow
+        Tile cell = hit.GetComponent<Tile>(); // get the Tile bellow
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
+        {
+            if (stats.stoneInStock >= stoneCostArtificialStoneMine && stats.humansInStock >= humanCostArtificialStoneMine)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.stoneInStock -= stoneCostArtificialStoneMine;
+                stats.humansInStock -= humanCostArtificialStoneMine;
+            }
+            else
+            {
+                return;
+            }
+            
+            Instantiate(artificialStoneMine, snappedPosition, Quaternion.identity); // place it if all conditions are met
+            PlayPlaceSound();
+            cell.isOccupied = true;
+        }
+    }
+    
+    void PlaceArtificialTreeMine()
+    {
+        if (artificialWoodMiner == null) return; // Prevent errors if prefab is not assigned
+
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get the mouse pos
+        
+        // snap to grid by rounding to the nearest integer
+        Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y)); // get the snapped position
+        Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // check if theres something bellow
+        Tile cell = hit.GetComponent<Tile>(); // get the Tile bellow
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
+        {
+            if (stats.woodInStock >= woodCostArtificialWoodcutter && stats.humansInStock >= humanCostArtificialWoodcutter)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostArtificialWoodcutter;
+                stats.humansInStock -= humanCostArtificialWoodcutter;
+            }
+            else
+            {
+                return;
+            }
+            
+            Instantiate(artificialWoodMiner, snappedPosition, Quaternion.identity); // place it if all conditions are met
+            PlayPlaceSound();
+            cell.isOccupied = true;
         }
     }
     

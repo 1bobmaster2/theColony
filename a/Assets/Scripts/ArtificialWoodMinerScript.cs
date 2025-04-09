@@ -1,22 +1,21 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class StoneMinerScript : MonoBehaviour
+public class ArtificialWoodMinerScript : MonoBehaviour
 {
     private Tile cell;
     public Stats stats;
-    public int stoneCost = 22;
-    public int humanCost = 5;
-    
-    [SerializeField] LayerMask layerMask;
+    public int woodCost = 15;
+    public int humanCost = 4;
+
+
+    [SerializeField] private LayerMask layerMask;
     void Start()
     {
         GameObject statsObject = GameObject.FindWithTag("statsManager");
         stats = statsObject.GetComponent<Stats>();
         CheckBelow();
-        StartCoroutine("mineStone"); 
+        StartCoroutine("mineTree"); 
     }
     void OnDestroy()
     {
@@ -33,32 +32,33 @@ public class StoneMinerScript : MonoBehaviour
             cell = hit.GetComponent<Tile>(); 
             if (cell != null)
             {
-                if (cell.isTree == false && cell.isOccupied == false && cell.isStone == true)
+                if (cell.isTree == false && cell.isOccupied == false)
                 {
-                    Debug.Log("Stone detected below!");
+                    Debug.Log("can spawn!");
 
                 }
                 else
                 {
-                    Debug.Log("No Stone below.");
+                    Debug.Log("cant spawn because its either occupied or is a tree or some stone idk this shi.");
                 }
             }
         }
     }
 
 
-    IEnumerator mineStone()
+    IEnumerator mineTree()
     {
         while (true)
         {
-            stats.stoneInStock += 2;
-            yield return new WaitForSeconds(stats.globalStoneMinerCooldown);
+            stats.woodInStock++;
+        
+            yield return new WaitForSeconds(stats.globalArtificialWoodMinerCooldown);
         }
     }
 
     private void OnMouseDown()
     {
-        stats.stoneInStock += 11;
+        stats.woodInStock += 7;
         stats.humansInStock += humanCost;
         if (cell == null)
         {

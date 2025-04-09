@@ -11819,6 +11819,8 @@ MonoBehaviour:
   house: {fileID: 5653481259836358935, guid: 9e2faa03cbf7dc341913ed14b5e87511, type: 3}
   stoneMine: {fileID: 6868478275923223835, guid: 0d6e34b85df8f034e8f25a4ea50b9598, type: 3}
   researchFacility: {fileID: 7879959070323112448, guid: 8a132c1f84ff5e242bb64d70154ff3b2, type: 3}
+  artificialWoodMiner: {fileID: 6868478275923223835, guid: ce6bf226f0a6c164d93e8b2520901774, type: 3}
+  artificialStoneMine: {fileID: 6868478275923223835, guid: d75f4e1bb4145324a85d65f52b3dc32c, type: 3}
   stats: {fileID: 0}
   soundThingy: {fileID: 8873698381089855147}
   PlaceSound:
@@ -12474,6 +12476,8 @@ MonoBehaviour:
   researchPointsInStock: 0
   globalWoodMinerCooldown: 3
   globalStoneMinerCooldown: 5
+  globalArtificialWoodMinerCooldown: 6
+  globalArtificialStoneMinerCooldown: 8
 --- !u!114 &6691281673232517108
 MonoBehaviour:
   m_ObjectHideFlags: 0

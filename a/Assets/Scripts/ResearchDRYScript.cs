@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using System;
 using System.Reflection;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 [Serializable]
 public class ResearchDRYScript : MonoBehaviour
@@ -15,7 +13,7 @@ public class ResearchDRYScript : MonoBehaviour
     public bool isResearched;
     private bool isResearchIsApplied = false;
     public string theMethodToRun;
-    public List<ResearchDRYScript> requiredResearch = new List<ResearchDRYScript>();
+    public List<ResearchDRYScript> requiredResearch = new();
     private bool canBeResearched = true;
 
     private Transform canvasTransform;
@@ -56,13 +54,7 @@ public class ResearchDRYScript : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-        
-    }
 
-    
     /*GameObject obj = hitCollider.gameObject;
                 ResearchDRYScript researchScript = obj.GetComponent<ResearchDRYScript>();
                 GameObject go = Instantiate(researchWindowObject, obj.transform.position, Quaternion.identity, canvasTransform);

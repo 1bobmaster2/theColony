@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class StoneMinerScript : MonoBehaviour
+public class ArtificialStoneMineScript : MonoBehaviour
 {
     private Tile cell;
     public Stats stats;
-    public int stoneCost = 22;
-    public int humanCost = 5;
+    public int stoneCost = 25;
+    public int humanCost = 6;
     
     [SerializeField] LayerMask layerMask;
     void Start()
@@ -33,7 +31,7 @@ public class StoneMinerScript : MonoBehaviour
             cell = hit.GetComponent<Tile>(); 
             if (cell != null)
             {
-                if (cell.isTree == false && cell.isOccupied == false && cell.isStone == true)
+                if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
                 {
                     Debug.Log("Stone detected below!");
 
@@ -52,13 +50,13 @@ public class StoneMinerScript : MonoBehaviour
         while (true)
         {
             stats.stoneInStock += 2;
-            yield return new WaitForSeconds(stats.globalStoneMinerCooldown);
+            yield return new WaitForSeconds(stats.globalArtificialStoneMinerCooldown);
         }
     }
 
     private void OnMouseDown()
     {
-        stats.stoneInStock += 11;
+        stats.stoneInStock += 17;
         stats.humansInStock += humanCost;
         if (cell == null)
         {
