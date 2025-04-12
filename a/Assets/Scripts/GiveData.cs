@@ -66,7 +66,7 @@ public class GiveData : MonoBehaviour
                 hasData.Add(true);
                 hasData.Add(true); // this is stone cost btw
                 hasData.Add(true);
-                buildingName = "Stone Collector";
+                buildingName = "Stone Mine";
                 canBePlacedOn = "Stone";
                 humanCost = 2;
                 stoneCost = 22;
@@ -138,6 +138,26 @@ public class GiveData : MonoBehaviour
                 gsd5.buildingName = buildingName;
                 gsd5.woodCost = woodCost;
                 gsd5.humanCost = humanCost;
+                break;
+            case "CreateArtificialStoneMineInfo":
+                hasData.Clear();
+                hasData.Add(true);
+                hasData.Add(false); // this is wood
+                hasData.Add(true);
+                hasData.Add(true); // this is stone cost btw
+                hasData.Add(true);
+                buildingName = "Artificial Stone Mine";
+                canBePlacedOn = "Anywhere";
+                humanCost = 6;
+                stoneCost = 25;
+                GameObject go22 = Instantiate(window);
+                GetSetData gsd22 = go22.GetComponent<GetSetData>();
+                go22.transform.SetParent(canvas.transform, false);
+                gsd22.hasData = hasData;
+                gsd22.canBePlacedOn = canBePlacedOn;
+                gsd22.buildingName = buildingName;
+                gsd22.stoneCost = stoneCost;
+                gsd22.humanCost = humanCost;
                 break;
             default:
                 Debug.LogError("hi");
