@@ -53,7 +53,7 @@ public class UI : MonoBehaviour
 
     void DisableControls()
     {
-        if (controls.activeInHierarchy)
+        if (controls.activeSelf)
         {
             controls.SetActive(false);
             menu.SetActive(false);
@@ -87,17 +87,21 @@ public class UI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && controls.activeSelf)
         {
             DisableControls();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && options.activeSelf)
+        {
+            DisableOptions();
+        }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && sound.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Escape) && sound.activeSelf)
         {
             DisableSound();
         }
 
-        if (options.activeInHierarchy)
+        if (options.activeSelf)
         {
             menu.SetActive(false);
         }

@@ -21,6 +21,15 @@ public class EscMenu : MonoBehaviour
             askToDelete.SetActive(false);
             ToggleUnpause();
         }
+
+        if (escMenu.activeSelf)
+        {
+            escMenuOpen = true;
+        }
+        else
+        {
+            escMenuOpen = false;
+        }
     }
     
     void TogglePause()

@@ -119,6 +119,26 @@ public class GiveData : MonoBehaviour
                 gsd4.stoneCost = stoneCost;
                 gsd4.humanCost = humanCost;
                 break;
+            case "CreateArtificialWoodCutterInfo":
+                hasData.Clear();
+                hasData.Add(true);
+                hasData.Add(true);
+                hasData.Add(true);
+                hasData.Add(false); // this is stone cost btw
+                hasData.Add(true);
+                buildingName = "Artificial Wood Cutter";
+                canBePlacedOn = "Anywhere";
+                woodCost = 15;
+                humanCost = 4;
+                GameObject go5 = Instantiate(window);
+                GetSetData gsd5 = go5.GetComponent<GetSetData>();
+                go5.transform.SetParent(canvas.transform, false);
+                gsd5.hasData = hasData;
+                gsd5.canBePlacedOn = canBePlacedOn;
+                gsd5.buildingName = buildingName;
+                gsd5.woodCost = woodCost;
+                gsd5.humanCost = humanCost;
+                break;
             default:
                 Debug.LogError("hi");
                 break;
