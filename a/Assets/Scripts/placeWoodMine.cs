@@ -24,6 +24,9 @@ public class placeWoodMine  : MonoBehaviour
     private int stoneCostArtificialStoneMine = 25;
     private int humanCostArtificialStoneMine = 6;
 
+    [SerializeField] private ResearchDRYScript canPlaceArtificialWoodcutter;
+    [SerializeField] private ResearchDRYScript canPlaceArtificialStoneMine;
+
     public UI soundThingy;
     
     public EventReference PlaceSound;
@@ -56,11 +59,11 @@ public class placeWoodMine  : MonoBehaviour
         {
             PlaceResearchFacility();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        else if (Input.GetKeyDown(KeyCode.Alpha6) && canPlaceArtificialWoodcutter.isResearched)
         {
             PlaceArtificialTreeMine();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        else if (Input.GetKeyDown(KeyCode.Alpha7) && canPlaceArtificialStoneMine.isResearched)
         {
             PlaceArtificialStoneMine();
         }

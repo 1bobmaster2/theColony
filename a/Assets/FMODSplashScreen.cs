@@ -8,15 +8,20 @@ public class FMODSplashScreen : MonoBehaviour
     [SerializeField] private List<Image> splashScreenSprites = new();
     void Awake()
     {
-        if (gameObject.activeSelf == false)
+        if (!gameObject.activeSelf)
         {
-            gameObject.SetActive(true);
+            Invoke(nameof(enableItself) ,0f);
         }
 
         foreach (Image img in splashScreenSprites)
         {
             StartCoroutine(Delay(img, 2f));
         }
+    }
+
+    void enableItself()
+    {
+        gameObject.SetActive(true);
     }
 
     IEnumerator Delay(Image img, float delay)
