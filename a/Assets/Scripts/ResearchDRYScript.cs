@@ -108,4 +108,14 @@ public class ResearchDRYScript : MonoBehaviour
     {
         stats.globalStoneMinerCooldown -= 0.5f;
     }
+
+    void upgradeArtificialWoodcutter()
+    {
+        stats.globalArtificialWoodMinerCooldown -= 1f;
+    }
+
+    void upgradeArtificialStoneMine()
+    {
+        stats.globalArtificialStoneMinerCooldown -= 1f;
+    }
 }

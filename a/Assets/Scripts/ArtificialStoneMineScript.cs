@@ -50,6 +50,7 @@ public class ArtificialStoneMineScript : MonoBehaviour
         while (true)
         {
             stats.stoneInStock += 2;
+            Debug.Log(stats.globalArtificialStoneMinerCooldown);
             yield return new WaitForSeconds(stats.globalArtificialStoneMinerCooldown);
         }
     }

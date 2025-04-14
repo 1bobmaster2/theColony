@@ -51,7 +51,7 @@ public class ArtificialWoodMinerScript : MonoBehaviour
         while (true)
         {
             stats.woodInStock++;
-        
+            Debug.Log("ok now we're gonan wait for " + stats.globalArtificialWoodMinerCooldown);
             yield return new WaitForSeconds(stats.globalArtificialWoodMinerCooldown);
         }
     }
