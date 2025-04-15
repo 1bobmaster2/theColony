@@ -33,12 +33,18 @@ public class ArtificialStoneMineScript : MonoBehaviour
             {
                 if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
                 {
-                    Debug.Log("Stone detected below!");
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("Stone detected below!");
+                    }
 
                 }
                 else
                 {
-                    Debug.Log("No Stone below.");
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("No Stone below.");
+                    }
                 }
             }
         }

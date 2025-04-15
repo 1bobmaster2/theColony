@@ -50,7 +50,10 @@ public class ResearchDRYScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("hehe");
+            if (Application.isEditor)
+            {
+                Debug.Log("hehe");
+            }
         }
     }
 
@@ -74,7 +77,10 @@ public class ResearchDRYScript : MonoBehaviour
             else
             {
                 canBeResearched = false;
-                Debug.Log("not everything required was researched");
+                if (Application.isEditor)
+                {
+                    Debug.Log("not everything required was researched");
+                }
             }
         }
         
@@ -82,12 +88,18 @@ public class ResearchDRYScript : MonoBehaviour
         {
             stats.researchPointsInStock -= researchCost;
             isResearched = true;
-            Debug.Log("Researched");
+            if (Application.isEditor)
+            {
+                Debug.Log("Researched");
+            }
             runTheMethod();
         }
         else
         {
-            Debug.Log("Did not research");
+            if (Application.isEditor)
+            {
+                Debug.Log("Did not research");
+            }
         }
     }
 
@@ -101,7 +113,10 @@ public class ResearchDRYScript : MonoBehaviour
     void upgradeWoodcutter()
     {
         stats.globalWoodMinerCooldown -= 0.5f;
-        Debug.Log("Great! the current cooldown is: " + stats.globalWoodMinerCooldown);
+        if (Application.isEditor)
+        {
+            Debug.Log("Great! the current cooldown is: " + stats.globalWoodMinerCooldown);
+        }
     }
 
     void upgradeStonecutter()

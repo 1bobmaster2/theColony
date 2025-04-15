@@ -33,12 +33,17 @@ public class houseScript : MonoBehaviour
 
         if (hit == null) // if there isn't log an error
         {
-            Debug.LogError("No Tile found at house position!");
+            if (Application.isEditor)
+            {
+                Debug.LogError("No Tile found at house position!");
+            }
             return;
         }
 
-        Debug.Log("succes");
-
+        if (Application.isEditor)
+        {
+            Debug.Log("succes");
+        }
         cell = hit.GetComponent<Tile>(); // get the tile
     }
 
@@ -52,11 +57,17 @@ public class houseScript : MonoBehaviour
                 stats.foodInStock -= 5; 
                 stats.humansInStock++;
                 stats.totalhumansInStock++;
-                Debug.Log("Human created! Food left: " + stats.foodInStock);
+                if (Application.isEditor)
+                {
+                    Debug.Log("Human created! Food left: " + stats.foodInStock);
+                }
             }
             else
             {
-                Debug.Log("Not enough food to create human.");
+                if (Application.isEditor)
+                {
+                    Debug.Log("Not enough food to create human.");
+                }
             }
             yield return new WaitForSeconds(3);
         }
@@ -68,7 +79,10 @@ public class houseScript : MonoBehaviour
         stats.woodInStock += 10;
         if (cell == null)
         {
-            Debug.Log("cell is null!");
+            if (Application.isEditor)
+            {
+                Debug.Log("cell is null!");
+            }
             return;
         }
 

@@ -210,11 +210,17 @@ public class placeWoodMine  : MonoBehaviour
             Instantiate(farm, snappedPosition, Quaternion.identity); // Place prefab
             PlayPlaceSound();
             cell.isOccupied = true;
-            Debug.Log("placed farm");
+            if (Application.isEditor)
+            {
+                Debug.Log("placed farm");
+            }
         }
         else
         {
-            Debug.Log("did not placed farm");
+            if (Application.isEditor)
+            {
+                Debug.Log("did not placed farm");
+            }
         }
     }
 
@@ -241,11 +247,17 @@ public class placeWoodMine  : MonoBehaviour
             Instantiate(house, snappedPosition, Quaternion.identity); // Place prefab
             PlayPlaceSound();
             cell.isOccupied = true;
-            Debug.Log("placed house");
+            if (Application.isEditor)
+            {
+                Debug.Log("placed house");
+            }
         }
         else
         {
-            Debug.Log("did not place house");
+            if (Application.isEditor)
+            {
+                Debug.Log("did not place house");
+            }
         }
     }
     

@@ -31,7 +31,10 @@ public class UI : MonoBehaviour
         if (PlayerPrefs.HasKey("SoundVolume"))
         {
             SoundVolume = PlayerPrefs.GetFloat("SoundVolume");
-            Debug.Log(SoundVolume + " also found the player pref");
+            if (Application.isEditor)
+            {
+                Debug.Log(SoundVolume + " also found the player pref");
+            }
             soundVolumeSlider.value = SoundVolume;
             double soundVolumeAsDouble = SoundVolume * 100;
             soundVolumeText.text = (Math.Round(soundVolumeAsDouble)).ToString();

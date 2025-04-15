@@ -35,12 +35,17 @@ public class StoneMinerScript : MonoBehaviour
             {
                 if (cell.isTree == false && cell.isOccupied == false && cell.isStone == true)
                 {
-                    Debug.Log("Stone detected below!");
-
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("Stone detected below!");
+                    }
                 }
                 else
                 {
-                    Debug.Log("No Stone below.");
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("No Stone below.");
+                    }
                 }
             }
         }
@@ -62,7 +67,10 @@ public class StoneMinerScript : MonoBehaviour
         stats.humansInStock += humanCost;
         if (cell == null)
         {
-            Debug.Log("cell is null!");
+            if (Application.isEditor)
+            {
+                Debug.Log("cell is null!");
+            }
             return;
         }
 

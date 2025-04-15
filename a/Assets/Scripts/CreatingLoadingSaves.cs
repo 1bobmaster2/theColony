@@ -228,17 +228,29 @@ public class CreatingLoadingSaves : MonoBehaviour
         foreach (string file in files)
         {
             string objectName = Path.GetFileNameWithoutExtension(file).Replace(".dat", ""); // get the object
-            Debug.LogError("current object name is equal to: " + objectName);
+            if (Application.isEditor)
+            {
+                Debug.LogError("current object name is equal to: " + objectName);
+            }
             string fixedObjectname = Regex.Replace(objectName, @"[a-fA-F0-9\-]{36}$", ""); // get the object name without guid
-            Debug.LogError("current object name is equal to: " + fixedObjectname);
+            if (Application.isEditor)
+            {
+                Debug.LogError("current object name is equal to: " + fixedObjectname);
+            }
             GameObject existingObject = GameObject.Find(fixedObjectname); // check if the object (without id) already exists in the scene
             
             if (existingObject == null) // if it doesnt instantiate it
             {
                 string theThingToFind = Regex.Replace(objectName, @"[a-fA-F0-9\-]{36}$", ""); // get the object name without guid
-                Debug.LogError(theThingToFind + " ohio baka ");
+                if (Application.isEditor)
+                {
+                    Debug.LogError(theThingToFind + " ohio baka ");
+                }
                 GameObject prefab = Resources.Load<GameObject>(theThingToFind); // load the prefab from resources
-                Debug.LogError($"ok so the GameObject prefab is {prefab}");
+                if (Application.isEditor)
+                {
+                    Debug.LogError($"ok so the GameObject prefab is {prefab}");
+                }
     
                 if (prefab != null) 
                 {
@@ -266,7 +278,10 @@ public class CreatingLoadingSaves : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("Prefab not found in Resources: " + theThingToFind);
+                    if (Application.isEditor)
+                    {
+                        Debug.LogWarning("Prefab not found in Resources: " + theThingToFind);
+                    }
                     continue;
                 }
             }
@@ -275,7 +290,10 @@ public class CreatingLoadingSaves : MonoBehaviour
                 Saving.Load(existingObject);
             }
             // logging
-            Debug.Log(existingObject.name + " loaded");
+            if (Application.isEditor)
+            {
+                Debug.Log(existingObject.name + " loaded");
+            }
         }
     }
 }

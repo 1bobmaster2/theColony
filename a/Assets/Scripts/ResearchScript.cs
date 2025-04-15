@@ -29,7 +29,10 @@ public class ResearchScript : MonoBehaviour
         Collider2D hit = Physics2D.OverlapPoint(belowPosition, layerMask); // check if there is something bellow
         if (hit == null)
         {
-            Debug.LogError("farm did not found something below :(");
+            if (Application.isEditor)
+            {
+                Debug.LogError("farm did not found something below :(");
+            }
         }
         cell = hit.GetComponent<Tile>(); // get the tile
     }
@@ -52,7 +55,10 @@ public class ResearchScript : MonoBehaviour
         stats.humansInStock += humanCost;
         if (cell == null)
         {
-            Debug.Log("cell is null!");
+            if (Application.isEditor)
+            {
+                Debug.Log("cell is null!");
+            }
             return;
         }
 

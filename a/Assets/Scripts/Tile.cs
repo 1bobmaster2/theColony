@@ -51,16 +51,27 @@ public class Tile : MonoBehaviour
                 // logging for debugging
                 if (currentStats == null)
                 {
-                    Debug.LogError("Found the GameObject, but no Stats component attached.");
+                    if (Application.isEditor)
+                    {
+                        Debug.LogError("Found the GameObject, but no Stats component attached.");
+
+                    }
                 }
                 else
                 {
-                    Debug.Log("Successfully assigned currentStats from the GameObject.");
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("Successfully assigned currentStats from the GameObject.");
+
+                    }
                 }
             }
             else
             {
-                Debug.LogError("No GameObject with the 'Stats' tag found in the scene.");
+                if (Application.isEditor)
+                {
+                    Debug.LogError("No GameObject with the 'Stats' tag found in the scene.");
+                }
             }
         }
     }
@@ -78,7 +89,10 @@ public class Tile : MonoBehaviour
         {
             isTree = true;
             spriteRenderer.color = treeColor;
-            Debug.Log("Created a tree");
+            if (Application.isEditor)
+            {
+                Debug.Log("Created a tree");
+            }
         }
         else if (random == 2)
         {

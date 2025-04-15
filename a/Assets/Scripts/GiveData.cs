@@ -16,7 +16,10 @@ public class GiveData : MonoBehaviour
     public void CreateTheObjectAndGiveData()
     {
         string parentName = gameObject.name;
-        Debug.LogError("ohio ligma balls");
+        if (Application.isEditor)
+        {
+            Debug.LogError("ohio ligma balls");
+        }
         switch (parentName)
         {
             case "CreateWoodCutterInfo":
@@ -160,7 +163,10 @@ public class GiveData : MonoBehaviour
                 gsd22.humanCost = humanCost;
                 break;
             default:
-                Debug.LogError("hi");
+                if (Application.isEditor)
+                {
+                    Debug.LogError("hi");
+                }
                 break;
         }
     }

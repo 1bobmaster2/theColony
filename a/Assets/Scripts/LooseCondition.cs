@@ -47,7 +47,10 @@ public class LooseCondition : MonoBehaviour
             }
             else
             {
-                Debug.Log("survived"); // logging
+                if (Application.isEditor)
+                {
+                    Debug.Log("survived"); // logging
+                }
             }
             
         }

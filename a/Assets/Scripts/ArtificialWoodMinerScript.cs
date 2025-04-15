@@ -34,12 +34,17 @@ public class ArtificialWoodMinerScript : MonoBehaviour
             {
                 if (cell.isTree == false && cell.isOccupied == false)
                 {
-                    Debug.Log("can spawn!");
-
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("can spawn!");
+                    }
                 }
                 else
                 {
-                    Debug.Log("cant spawn because its either occupied or is a tree or some stone idk this shi.");
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("cant spawn because its either occupied or is a tree or some stone idk this shi.");
+                    }
                 }
             }
         }
@@ -51,7 +56,10 @@ public class ArtificialWoodMinerScript : MonoBehaviour
         while (true)
         {
             stats.woodInStock++;
-            Debug.Log("ok now we're gonan wait for " + stats.globalArtificialWoodMinerCooldown);
+            if (Application.isEditor)
+            {
+                Debug.Log("ok now we're gonan wait for " + stats.globalArtificialWoodMinerCooldown);
+            }
             yield return new WaitForSeconds(stats.globalArtificialWoodMinerCooldown);
         }
     }
@@ -62,7 +70,10 @@ public class ArtificialWoodMinerScript : MonoBehaviour
         stats.humansInStock += humanCost;
         if (cell == null)
         {
-            Debug.Log("cell is null!");
+            if (Application.isEditor)
+            {
+                Debug.Log("cell is null!");
+            }
             return;
         }
 

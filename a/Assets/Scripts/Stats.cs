@@ -34,11 +34,14 @@ public class Stats : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space)) // log all of the stats, currently not useful, but im keeping it here
         {
-            Debug.Log("You have:");
-            Debug.Log(woodInStock + " wood");
-            Debug.Log(humansInStock + " humans");
-            Debug.Log(foodInStock + " food");
-            Debug.Log(totalhumansInStock + " total humans");
+            if (Application.isEditor)
+            {
+                Debug.Log("You have:");
+                Debug.Log(woodInStock + " wood");
+                Debug.Log(humansInStock + " humans");
+                Debug.Log(foodInStock + " food");
+                Debug.Log(totalhumansInStock + " total humans");
+            }
         }
     }
 }

@@ -36,12 +36,17 @@ public class woodMinerScript : MonoBehaviour
             {
                 if (cell.isTree == true && cell.isOccupied == false)
                 {
-                    Debug.Log("Tree detected below!");
-
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("Tree detected below!");
+                    }
                 }
                 else
                 {
-                    Debug.Log("No tree below.");
+                    if (Application.isEditor)
+                    {
+                        Debug.Log("No tree below.");
+                    }
                 }
             }
         }
@@ -64,7 +69,10 @@ public class woodMinerScript : MonoBehaviour
         stats.humansInStock += humanCost;
         if (cell == null)
         {
-            Debug.Log("cell is null!");
+            if (Application.isEditor)
+            {
+                Debug.Log("cell is null!");
+            }
             return;
         }
 

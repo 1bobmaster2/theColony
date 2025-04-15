@@ -28,7 +28,10 @@ public class farmScript : MonoBehaviour
         Collider2D hit = Physics2D.OverlapPoint(belowPosition, layerMask); // check if there is something bellow
         if (hit == null)
         {
-            Debug.LogError("farm did not found something below :(");
+            if (Application.isEditor)
+            {
+                Debug.LogError("farm did not found something below :(");
+            }
         }
         cell = hit.GetComponent<Tile>(); // get the tile
     }
@@ -45,13 +48,19 @@ public class farmScript : MonoBehaviour
     
     private void OnMouseDown()
     {
-        Debug.Log("click lol");
+        if (Application.isEditor)
+        {
+            Debug.Log("click lol");
+        }
         // removing the farm and giving the cost back
         stats.woodInStock += 7;
         stats.humansInStock += humanCost;
         if (cell == null)
         {
-            Debug.Log("cell is null!");
+            if (Application.isEditor)
+            {
+                Debug.Log("cell is null!");
+            }
         }
         else
         {
