@@ -3,7 +3,7 @@ using UnityEngine;
 public class CinematicMode : MonoBehaviour
 {
     public GameObject canvas; // reference to the canvas object
-    private bool isCinematic = false; // pre setting the isCinematic variable
+    private bool isCinematic = false; // pre-setting the isCinematic variable
 
     // Update is called once per frame
     void Update()
