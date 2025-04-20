@@ -8,10 +8,11 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject controls;
     [SerializeField] private GameObject options;
     [SerializeField] private GameObject sound;
+    [SerializeField] private GameObject fpsMenu;
     [SerializeField] private Text soundVolumeText;
     [SerializeField] private Slider soundVolumeSlider;
     public float SoundVolume;
-
+    
 
     public void SliderChange(float value)
     {
@@ -88,6 +89,18 @@ public class UI : MonoBehaviour
         sound.SetActive(false);
     }
 
+    public void EnableFpsMenu()
+    {
+        fpsMenu.SetActive(true);
+        options.SetActive(false);
+    }
+
+    void DisableFpsMenu()
+    {
+        fpsMenu.SetActive(false);
+        options.SetActive(true);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && controls.activeSelf)
@@ -98,8 +111,11 @@ public class UI : MonoBehaviour
         {
             DisableOptions();
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape) && sound.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.Escape) && fpsMenu.activeSelf)
+        {
+            DisableFpsMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && sound.activeSelf)
         {
             DisableSound();
         }
@@ -113,5 +129,30 @@ public class UI : MonoBehaviour
     void Start()
     {
         LoadSound();
+        LoadMaxFps();
+    }
+    
+
+    public void SetMaxFps(string valueString)
+    {
+        int value = int.Parse(valueString);
+        QualitySettings.vSyncCount = 0;
+        if (value == 0)
+        {
+            Application.targetFrameRate = -1;
+        }
+        else
+        {
+            Application.targetFrameRate = value;
+            PlayerPrefs.SetInt("MaxFps", value);
+        }
+    }
+
+    void LoadMaxFps()
+    {
+        if (PlayerPrefs.HasKey("MaxFps"))
+        {
+            Application.targetFrameRate = PlayerPrefs.GetInt("MaxFps");
+        }
     }
 }

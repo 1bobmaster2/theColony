@@ -5,6 +5,7 @@ using UnityEngine;
 public class placeWoodMine  : MonoBehaviour
 {
     public GameObject woodMine, farm, house, stoneMine, researchFacility, artificialWoodMiner, artificialStoneMine; // reference to the prefabs that get spawned
+    [Space]
     public Stats stats;
     private int woodCostFarm = 15;
     private int woodCostHouse = 20;
@@ -13,23 +14,25 @@ public class placeWoodMine  : MonoBehaviour
     private int humanCostWoodcutter = 3;
     private int stoneCostStoneMine = 22;
     private int humanCostStoneMine = 5;
-
+    [Space]
     private int woodCostResearchFacility = 10;
     private int stoneCostResearchFacility = 10;
     private int humanCostResearchFacility = 5;
-
+    [Space]
     private int woodCostArtificialWoodcutter = 15;
     private int humanCostArtificialWoodcutter = 4;
-
+    [Space]
     private int stoneCostArtificialStoneMine = 25;
     private int humanCostArtificialStoneMine = 6;
-
+    [Space]
     [SerializeField] private ResearchDRYScript canPlaceArtificialWoodcutter;
     [SerializeField] private ResearchDRYScript canPlaceArtificialStoneMine;
-
+    [Space]
     public UI soundThingy;
-    
+    [Space]
     public EventReference PlaceSound;
+    [Space]
+    [SerializeField] private GameObject fpsMenu;
 
     void Start()
     {
@@ -39,31 +42,31 @@ public class placeWoodMine  : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // place the tree mine and register it for saving when the player presses one 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !fpsMenu.activeSelf) // place the tree mine and register it for saving when the player presses one 
         {
             PlaceTreeMine();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) // place the farm and register it for saving when the player presses two
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && !fpsMenu.activeSelf) // place the farm and register it for saving when the player presses two
         {
             PlaceFarm();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) // place the house and register it for saving when the player presses three
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && !fpsMenu.activeSelf) // place the house and register it for saving when the player presses three
         {
             PlaceHouse();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && !fpsMenu.activeSelf)
         {
             PlaceStoneMine();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5) && !fpsMenu.activeSelf)
         {
             PlaceResearchFacility();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha6) && canPlaceArtificialWoodcutter.isResearched)
+        else if (Input.GetKeyDown(KeyCode.Alpha6) && canPlaceArtificialWoodcutter.isResearched && !fpsMenu.activeSelf)
         {
             PlaceArtificialTreeMine();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha7) && canPlaceArtificialStoneMine.isResearched)
+        else if (Input.GetKeyDown(KeyCode.Alpha7) && canPlaceArtificialStoneMine.isResearched && !fpsMenu.activeSelf)
         {
             PlaceArtificialStoneMine();
         }
