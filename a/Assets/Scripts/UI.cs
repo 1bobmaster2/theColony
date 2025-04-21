@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject fpsMenu;
     [SerializeField] private Text soundVolumeText;
     [SerializeField] private Slider soundVolumeSlider;
+    [Space]
     public float SoundVolume;
     
 
@@ -128,11 +129,15 @@ public class UI : MonoBehaviour
 
     void Start()
     {
+        LoadAll();
+    }
+
+    void LoadAll()
+    {
         LoadSound();
         LoadMaxFps();
     }
     
-
     public void SetMaxFps(string valueString)
     {
         int value = int.Parse(valueString);

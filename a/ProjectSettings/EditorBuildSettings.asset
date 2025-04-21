@@ -12,5 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/skibidiBackup.unity
     guid: efd570b87bb079c45bb24ab364e51eea
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 94a42e2e036e2614a96d597098a020cb, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
