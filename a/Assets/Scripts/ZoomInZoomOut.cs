@@ -10,6 +10,7 @@ public class ZoomInZoomOut : MonoBehaviour
     void Update()
     {
         cam.orthographicSize += Input.GetAxis("Mouse ScrollWheel") * zoomMultiplier;
+        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 1, 1000);
         zoomInValue = cam.orthographicSize;
     }
 }
