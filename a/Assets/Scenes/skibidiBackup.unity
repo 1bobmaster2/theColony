@@ -13871,6 +13871,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746650404}
   m_CullTransparentMesh: 1
+--- !u!1 &1761580615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1761580616}
+  m_Layer: 5
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1761580616
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761580615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7050573896061064268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1768638914
 GameObject:
   m_ObjectHideFlags: 0
@@ -17170,6 +17205,7 @@ GameObject:
   - component: {fileID: 6514119725133305890}
   - component: {fileID: 8873698381089855146}
   - component: {fileID: 8873698381089855147}
+  - component: {fileID: 8873698381089855148}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: statsManager
@@ -18555,6 +18591,7 @@ RectTransform:
   - {fileID: 278813237}
   - {fileID: 785285898}
   - {fileID: 439438266}
+  - {fileID: 1761580616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -19103,6 +19140,21 @@ MonoBehaviour:
   soundVolumeText: {fileID: 328889574}
   soundVolumeSlider: {fileID: 433984246}
   SoundVolume: 0
+--- !u!114 &8873698381089855148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809457518083019980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996274c5685e9c1408e9b44a1dc306e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialWindow: {fileID: 0}
+  tutorialUIObject: {fileID: 0}
+  tutorialText: 
 --- !u!114 &8917566957370553763
 MonoBehaviour:
   m_ObjectHideFlags: 0
