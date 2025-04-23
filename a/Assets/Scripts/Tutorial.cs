@@ -7,14 +7,14 @@ public class Tutorial : MonoBehaviour
     [Space]
     [SerializeField] private string tutorialText;
 
-    public bool anyMoreTutorial;
+    public static bool anyMoreTutorial;
     void Start()
     {
-        
+        StartTutorialing();
     }
 
     void StartTutorialing()
     {
-        
+        Instantiate(tutorialWindow, tutorialUIObject);
     }
 }

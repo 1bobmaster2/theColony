@@ -19152,8 +19152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996274c5685e9c1408e9b44a1dc306e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialWindow: {fileID: 0}
-  tutorialUIObject: {fileID: 0}
+  tutorialWindow: {fileID: 2901570134736758042, guid: bf2a4348023ba5e498c6de616915273c, type: 3}
+  tutorialUIObject: {fileID: 1761580616}
   tutorialText: 
 --- !u!114 &8917566957370553763
 MonoBehaviour:
