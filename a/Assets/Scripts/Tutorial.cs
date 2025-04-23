@@ -7,7 +7,7 @@ public class Tutorial : MonoBehaviour
     [Space]
     [SerializeField] private string tutorialText;
 
-    private bool anyMoreTutorial;
+    public bool anyMoreTutorial;
     void Start()
     {
         
