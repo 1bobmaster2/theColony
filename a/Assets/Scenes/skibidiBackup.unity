@@ -19229,7 +19229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialWindow: {fileID: 2901570134736758042, guid: bf2a4348023ba5e498c6de616915273c, type: 3}
-  tutorialUIParentObject: {fileID: 0}
+  tutorialUIParentObject: {fileID: 1761580616}
   tutorialText: 
 --- !u!114 &8917566957370553763
 MonoBehaviour:
