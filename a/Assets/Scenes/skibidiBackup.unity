@@ -19154,7 +19154,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialWindow: {fileID: 2901570134736758042, guid: bf2a4348023ba5e498c6de616915273c, type: 3}
   tutorialUIParentObject: {fileID: 1761580616}
-  tutorialText: 
+  tutorialTexts:
+  - Welcome to the colony lets start by building a wood cutter. Find a forest (red
+    tile) and press 1.
+  - If you don't want to do the tutorial press the red close button.
+  - Pressing LMB on the building icons will show you info about the building.
+  - Your humans need food to survive. Build farms by pressing 2.
+  - Every minute each human eats 1 food, if there isn't enough food you lose.
+  - Build houses to create more humans.
+  - 'Enjoy The Colony, you''ll have to learn on your own now. '
 --- !u!114 &8917566957370553763
 MonoBehaviour:
   m_ObjectHideFlags: 0
