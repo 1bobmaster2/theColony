@@ -8,7 +8,6 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private string[] tutorialTexts;
     private Vector3 tutorialPosition = new(537, 384, 0);
     private Quaternion tutorialRotation = Quaternion.identity;
-    public static bool anyMoreTutorial;
     
     void Start()
     {
