@@ -11,6 +11,7 @@ TagManager:
   - Tile
   - doesNotGetDeactivated
   - canvas
+  - tutorialText
   layers:
   - Default
   - TransparentFX

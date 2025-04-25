@@ -145,6 +145,7 @@ public class UI : MonoBehaviour
         if (value == 0)
         {
             Application.targetFrameRate = -1;
+            PlayerPrefs.DeleteKey("MaxFps");
         }
         else
         {
