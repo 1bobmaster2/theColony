@@ -9,7 +9,10 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private string[] tutorialTexts;
     private Vector3 tutorialPosition = new(537, 384, 0);
     private Quaternion tutorialRotation = Quaternion.identity;
-    
+    private Text textOfTutorialWindow;
+    private bool woodMinerExists;
+
+    private GameObject tutorialWindowInstantiated;
     void Start()
     {
         Invoke(nameof(StartTutorialing), 5f);
@@ -17,10 +20,24 @@ public class Tutorial : MonoBehaviour
 
     void StartTutorialing()
     {
-        GameObject tutorialWindowInstantiated = Instantiate(tutorialWindow, tutorialPosition, tutorialRotation, tutorialUIParentObject);
+        tutorialWindowInstantiated = Instantiate(tutorialWindow, tutorialPosition, tutorialRotation, tutorialUIParentObject);
         tutorialWindowInstantiated.GetComponent<RectTransform>().anchoredPosition = tutorialPosition;
-        Text textOfTutorialWindow = GetChildTextWithTag(tutorialWindowInstantiated, "tutorialText");
-        textOfTutorialWindow.text = tutorialTexts[0]; // this sets the text of the text in the window to the first string in the list
+        textOfTutorialWindow = GetChildTextWithTag(tutorialWindowInstantiated, "tutorialText");
+        MoveOntoNextTutorialText(0);
+    }
+
+    void MoveOntoNextTutorialText(int index)
+    {
+        textOfTutorialWindow.text = tutorialTexts[index];
+    }
+    
+    void Update()
+    {
+        if (isPlacedDownCheckByTag("woodMiner") && !woodMinerExists)
+        {
+            woodMinerExists = true;
+            MoveOntoNextTutorialText(1);
+        }
     }
     
     Text GetChildTextWithTag(GameObject parent, string tagOfGo)
@@ -42,5 +59,15 @@ public class Tutorial : MonoBehaviour
             Debug.Log("did not find it");
         }
         return null;
+    }
+
+    bool isPlacedDownCheckByTag(string tagOfGo)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tagOfGo);
+        if (objects.Length == 0)
+        {
+            return false;
+        }
+        return true;
     }
 }

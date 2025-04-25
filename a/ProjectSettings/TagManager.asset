@@ -12,6 +12,7 @@ TagManager:
   - doesNotGetDeactivated
   - canvas
   - tutorialText
+  - woodMiner
   layers:
   - Default
   - TransparentFX
