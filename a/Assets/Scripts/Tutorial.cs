@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,9 @@ public class Tutorial : MonoBehaviour
     private Vector3 tutorialPosition = new(537, 384, 0);
     private Quaternion tutorialRotation = Quaternion.identity;
     private Text textOfTutorialWindow;
-    private bool woodMinerExists;
-
+    private bool woodMinerExists, farmExists;
+    private bool coroutineFinished;
+    
     private GameObject tutorialWindowInstantiated;
     void Start()
     {
@@ -30,6 +32,15 @@ public class Tutorial : MonoBehaviour
     {
         textOfTutorialWindow.text = tutorialTexts[index];
     }
+
+    IEnumerator MoveOntoNextTutorialTextCoroutine(int index)
+    {
+        coroutineFinished = false;
+        yield return new WaitForSeconds(5f);
+        textOfTutorialWindow.text = tutorialTexts[index];
+        yield return new WaitForSeconds(5f);
+        coroutineFinished = true;
+    }
     
     void Update()
     {
@@ -37,6 +48,14 @@ public class Tutorial : MonoBehaviour
         {
             woodMinerExists = true;
             MoveOntoNextTutorialText(1);
+            if (!coroutineFinished)
+            {
+                StartCoroutine(MoveOntoNextTutorialTextCoroutine(2));
+            }
+        }
+        else if (coroutineFinished)
+        {
+            MoveOntoNextTutorialText(3);
         }
     }
     
