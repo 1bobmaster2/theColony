@@ -53,9 +53,16 @@ public class Tutorial : MonoBehaviour
                 StartCoroutine(MoveOntoNextTutorialTextCoroutine(2));
             }
         }
-        else if (coroutineFinished)
+        else if (coroutineFinished && !farmExists)
         {
             MoveOntoNextTutorialText(3);
+        }
+
+        if (isPlacedDownCheckByTag("farm") && !farmExists)
+        {
+            farmExists = true;
+            MoveOntoNextTutorialText(4);
+            StartCoroutine(MoveOntoNextTutorialTextCoroutine(5));
         }
     }
     

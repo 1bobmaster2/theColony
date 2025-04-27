@@ -13,6 +13,7 @@ TagManager:
   - canvas
   - tutorialText
   - woodMiner
+  - farm
   layers:
   - Default
   - TransparentFX
