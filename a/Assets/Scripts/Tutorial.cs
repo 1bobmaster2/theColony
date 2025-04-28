@@ -11,7 +11,7 @@ public class Tutorial : MonoBehaviour
     private Vector3 tutorialPosition = new(537, 384, 0);
     private Quaternion tutorialRotation = Quaternion.identity;
     private Text textOfTutorialWindow;
-    private bool woodMinerExists, farmExists;
+    private bool woodMinerExists, farmExists, houseExists;
     private bool coroutineFinished;
     
     private GameObject tutorialWindowInstantiated;
@@ -63,6 +63,12 @@ public class Tutorial : MonoBehaviour
             farmExists = true;
             MoveOntoNextTutorialText(4);
             StartCoroutine(MoveOntoNextTutorialTextCoroutine(5));
+        }
+
+        if (isPlacedDownCheckByTag("house") && !houseExists)
+        {
+            houseExists = true;
+            MoveOntoNextTutorialText(6);
         }
     }
     
