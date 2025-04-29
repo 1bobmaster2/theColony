@@ -16516,8 +16516,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.91, y: 0.72}
   m_AnchorMax: {x: 0.91, y: 0.72}
-  m_AnchoredPosition: {x: 746.681, y: 399.52277}
-  m_SizeDelta: {x: 416.6889, y: 13.389061}
+  m_AnchoredPosition: {x: 729.58, y: 399.52277}
+  m_SizeDelta: {x: 382.5, y: 13.3891}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274445348744595177
 MonoBehaviour:
@@ -17598,8 +17598,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -526.42395, y: 456.44946}
-  m_SizeDelta: {x: 767.1463, y: 66.8061}
+  m_AnchoredPosition: {x: -526.42395, y: 456.45276}
+  m_SizeDelta: {x: 767.1463, y: 66.79951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4259551134263379675
 RectTransform:
@@ -17777,6 +17777,7 @@ MonoBehaviour:
   researchFacility: {fileID: 7879959070323112448, guid: 8a132c1f84ff5e242bb64d70154ff3b2, type: 3}
   artificialWoodMiner: {fileID: 6868478275923223835, guid: ce6bf226f0a6c164d93e8b2520901774, type: 3}
   artificialStoneMine: {fileID: 6868478275923223835, guid: d75f4e1bb4145324a85d65f52b3dc32c, type: 3}
+  market: {fileID: 7879959070323112448, guid: 3ff5f4ac618cc2e45bf77911246cc883, type: 3}
   stats: {fileID: 0}
   canPlaceArtificialWoodcutter: {fileID: 904867305}
   canPlaceArtificialStoneMine: {fileID: 1268031558}
@@ -17805,8 +17806,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.91047925, y: 0.3178148}
   m_AnchorMax: {x: 0.91047925, y: 0.3178148}
-  m_AnchoredPosition: {x: 746.79315, y: -370.3}
-  m_SizeDelta: {x: 417.0089, y: 13.117756}
+  m_AnchoredPosition: {x: 729.54, y: -370.3}
+  m_SizeDelta: {x: 382.5, y: 13.1178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4864676917523361709
 MonoBehaviour:

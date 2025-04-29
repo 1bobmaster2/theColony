@@ -4,7 +4,7 @@ using UnityEngine;
 // the name of this class isn't really right cuz its more for spawning every building and not just one btw
 public class placeWoodMine  : MonoBehaviour
 {
-    public GameObject woodMine, farm, house, stoneMine, researchFacility, artificialWoodMiner, artificialStoneMine; // reference to the prefabs that get spawned
+    public GameObject woodMine, farm, house, stoneMine, researchFacility, artificialWoodMiner, artificialStoneMine, market; // reference to the prefabs that get spawned
     [Space]
     public Stats stats;
     private int woodCostFarm = 15;
@@ -24,6 +24,9 @@ public class placeWoodMine  : MonoBehaviour
     [Space]
     private int stoneCostArtificialStoneMine = 25;
     private int humanCostArtificialStoneMine = 6;
+    [Space] 
+    private int woodCostMarket = 30;
+    private int humanCostMarket = 10;
     [Space]
     [SerializeField] private ResearchDRYScript canPlaceArtificialWoodcutter;
     [SerializeField] private ResearchDRYScript canPlaceArtificialStoneMine;
@@ -69,6 +72,10 @@ public class placeWoodMine  : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha7) && canPlaceArtificialStoneMine.isResearched && !fpsMenu.activeSelf)
         {
             PlaceArtificialStoneMine();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8) && !fpsMenu.activeSelf)
+        {
+            PlaceMarket();
         }
     }
 
@@ -223,6 +230,45 @@ public class placeWoodMine  : MonoBehaviour
             if (Application.isEditor)
             {
                 Debug.Log("did not placed farm");
+            }
+        }
+    }
+    
+    void PlaceMarket()
+    {
+        // the comments from the PlaceTreeMine() apply here so i wont rewrite them, the same goes for place house
+        if (market == null) return;
+        
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        Vector2 snappedPosition = new Vector2(Mathf.Round(mouseWorldPosition.x), Mathf.Round(mouseWorldPosition.y));
+        Collider2D hit = Physics2D.OverlapPoint(snappedPosition); // reused woodMinerScript 13th line
+        Tile cell = hit.GetComponent<Tile>();
+        if (cell.isTree == false && cell.isOccupied == false && cell.isStone == false)
+        {
+            if (stats.woodInStock >= woodCostMarket && stats.humansInStock >= humanCostMarket)
+            {
+                // if the user has enough material, deduct cost from stats and start the CoRoutine
+                stats.woodInStock -= woodCostMarket;
+                stats.humansInStock -= humanCostMarket;
+            }
+            else
+            {
+                return;
+            }
+            Instantiate(market, snappedPosition, Quaternion.identity); // Place prefab
+            PlayPlaceSound();
+            cell.isOccupied = true;
+            if (Application.isEditor)
+            {
+                Debug.Log("placed market");
+            }
+        }
+        else
+        {
+            if (Application.isEditor)
+            {
+                Debug.Log("did not placed market");
             }
         }
     }
