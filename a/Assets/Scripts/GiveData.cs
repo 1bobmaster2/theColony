@@ -162,6 +162,26 @@ public class GiveData : MonoBehaviour
                 gsd22.stoneCost = stoneCost;
                 gsd22.humanCost = humanCost;
                 break;
+            case "CreateMarketInfo":
+                hasData.Clear();
+                hasData.Add(true);
+                hasData.Add(true);
+                hasData.Add(true);
+                hasData.Add(false); // this is stone cost btw
+                hasData.Add(true);
+                buildingName = "Market";
+                canBePlacedOn = "Anywhere";
+                woodCost = 30;
+                humanCost = 10;
+                GameObject go7 = Instantiate(window);
+                GetSetData gsd7 = go7.GetComponent<GetSetData>();
+                go7.transform.SetParent(canvas.transform, false);
+                gsd7.hasData = hasData;
+                gsd7.canBePlacedOn = canBePlacedOn;
+                gsd7.buildingName = buildingName;
+                gsd7.woodCost = woodCost;
+                gsd7.humanCost = humanCost;
+                break;
             default:
                 if (Application.isEditor)
                 {
