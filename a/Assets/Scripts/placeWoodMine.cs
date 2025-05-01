@@ -73,7 +73,7 @@ public class placeWoodMine  : MonoBehaviour
         {
             PlaceArtificialStoneMine();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha8) && !fpsMenu.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.Alpha8) && !fpsMenu.activeSelf && stats.marketUnlocked)
         {
             PlaceMarket();
         }

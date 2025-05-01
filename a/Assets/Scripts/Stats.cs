@@ -18,6 +18,8 @@ public class Stats : MonoBehaviour
     public float globalArtificialWoodMinerCooldown;
     
     public float globalArtificialStoneMinerCooldown;
+
+    public bool marketUnlocked;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -133,4 +133,9 @@ public class ResearchDRYScript : MonoBehaviour
     {
         stats.globalArtificialStoneMinerCooldown -= 1f;
     }
+
+    void unlockMarket()
+    {
+        stats.marketUnlocked = true;
+    }
 }
