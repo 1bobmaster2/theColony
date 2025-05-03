@@ -2407,7 +2407,7 @@ GameObject:
   - component: {fileID: 345837665}
   - component: {fileID: 345837664}
   m_Layer: 5
-  m_Name: market
+  m_Name: marketResearch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
