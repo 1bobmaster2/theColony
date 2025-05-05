@@ -165,6 +165,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   woodCost: 30
   humanCost: 10
+  marketWindow: {fileID: 2901570134736758042, guid: f56e1ca4ddeffa043a258e68accd2181, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 1024

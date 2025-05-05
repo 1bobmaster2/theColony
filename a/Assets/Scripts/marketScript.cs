@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class marketScript : MonoBehaviour
     public Stats stats; // reference to the stats
     public int woodCost = 30; //cost
     public int humanCost = 10; //cost  
+    public GameObject marketWindow;
+    public RectTransform canvas;
 
     [SerializeField] LayerMask layerMask;
     void Awake()
@@ -14,7 +17,10 @@ public class marketScript : MonoBehaviour
         GameObject statsObject = GameObject.FindWithTag("statsManager"); // get the stats
         stats = statsObject.GetComponent<Stats>(); // assign the stats
         CheckBelow();
+        GameObject canvasObject = GameObject.FindWithTag("canvas");
+        canvas = canvasObject.GetComponent<RectTransform>();
     }
+    
 
     void OnDestroy()
     {
@@ -58,5 +64,17 @@ public class marketScript : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (Application.isEditor)
+            {
+                Debug.Log("right clicked market");
+            }
+            Instantiate(marketWindow, new Vector2(800, 900), Quaternion.identity, canvas);
+        }
     }
 }
