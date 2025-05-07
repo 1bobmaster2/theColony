@@ -394,10 +394,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b328d1902bf095d4ca9c86ef082126f2, type: 3}
-    m_FontSize: 14
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -515,6 +515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f35971431f1f524a914485d704f6c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amountOfWoodInput: {fileID: 1939590325722091075}
+  amountOfStoneInput: {fileID: 6228998161222006405}
+  amountOfFoodInput: {fileID: 3410890368477314438}
 --- !u!1 &3306702059095970957
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +689,7 @@ GameObject:
   - component: {fileID: 6702840533074568703}
   - component: {fileID: 1939590325722091075}
   m_Layer: 5
-  m_Name: InputField (Legacy)
+  m_Name: AmountOfWood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1180,7 +1183,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001000375264449606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6303422190112319072}
+        m_TargetAssemblyTypeName: marketWindowScript, Assembly-CSharp
+        m_MethodName: SetMarketMode
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &5127889000457881561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,10 +1353,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b328d1902bf095d4ca9c86ef082126f2, type: 3}
-    m_FontSize: 14
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -1470,7 +1485,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2266220295595138801}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6303422190112319072}
+        m_TargetAssemblyTypeName: marketWindowScript, Assembly-CSharp
+        m_MethodName: DoMarketStuff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6194823594322695483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2246,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7081669736650065533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6303422190112319072}
+        m_TargetAssemblyTypeName: marketWindowScript, Assembly-CSharp
+        m_MethodName: SetMarketMode
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8153220011060149665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,7 +2351,7 @@ GameObject:
   - component: {fileID: 8680797885929303415}
   - component: {fileID: 6228998161222006405}
   m_Layer: 5
-  m_Name: InputField (Legacy) (1)
+  m_Name: AmountOfStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2620,7 +2659,7 @@ GameObject:
   - component: {fileID: 520344012137565620}
   - component: {fileID: 3410890368477314438}
   m_Layer: 5
-  m_Name: InputField (Legacy) (2)
+  m_Name: AmountOfFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
