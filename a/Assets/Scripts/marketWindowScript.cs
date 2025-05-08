@@ -47,18 +47,18 @@ public class marketWindowScript : MonoBehaviour
                 Debug.Log("paid " + cost);
             }
             // if we have enough money of course
-            stats.woodInStock = amountOfWood;
-            stats.foodInStock = amountOfFood;
-            stats.stoneInStock = amountOfStone;
+            stats.woodInStock += amountOfWood;
+            stats.foodInStock += amountOfFood;
+            stats.stoneInStock += amountOfStone;
         }
         else // this is sell
         {
             int profit = amountOfWood * costOfWood + amountOfFood * costOfFood + amountOfStone * costOfStone;
-            if (amountOfWood >= stats.woodInStock && amountOfStone >= stats.stoneInStock && amountOfFood >= stats.foodInStock)
+            if (amountOfWood <= stats.woodInStock && amountOfStone <= stats.stoneInStock && amountOfFood <= stats.foodInStock)
             {
-                stats.woodInStock =- amountOfWood;
-                stats.stoneInStock =- amountOfStone;
-                stats.foodInStock =- amountOfFood;
+                stats.woodInStock -= amountOfWood;
+                stats.stoneInStock -= amountOfStone;
+                stats.foodInStock -= amountOfFood;
 
                 if (Application.isEditor)
                 {
