@@ -46,10 +46,13 @@ public class marketWindowScript : MonoBehaviour
             {
                 Debug.Log("paid " + cost);
             }
-            // if we have enough money of course
-            stats.woodInStock += amountOfWood;
-            stats.foodInStock += amountOfFood;
-            stats.stoneInStock += amountOfStone;
+
+            if (cost <= stats.moneyInStock)
+            {    
+                stats.woodInStock += amountOfWood;
+                stats.foodInStock += amountOfFood;
+                stats.stoneInStock += amountOfStone;
+            }
         }
         else // this is sell
         {
@@ -64,6 +67,7 @@ public class marketWindowScript : MonoBehaviour
                 {
                     Debug.Log("got this much money " + profit);
                 }
+                stats.moneyInStock += profit;
             }
             else
             {

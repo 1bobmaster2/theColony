@@ -9,6 +9,7 @@ public class Stats : MonoBehaviour
     public int foodInStock;
     public int totalhumansInStock;
     public int stoneInStock;
+    public int moneyInStock;
     public int researchPointsInStock;
 
     public float globalWoodMinerCooldown;
