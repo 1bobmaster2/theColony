@@ -39,7 +39,6 @@ public static class Saving // this class had to be renamed cuz of a bug
     
     public static void SaveGO(GameObject go)
     {
-        
         Saveable saveable = go.GetComponent<Saveable>(); // get the saveable component of the go
         if (saveable == null)
         {
@@ -65,13 +64,14 @@ public static class Saving // this class had to be renamed cuz of a bug
         int foodInStock = stats != null ? stats.foodInStock : 0;
         int humansInStock = stats != null ? stats.humansInStock : 0;
         int stoneInStock = stats != null ? stats.stoneInStock : 0;
+        int moneyInStock = stats != null ? stats.moneyInStock : 0;
         int researchPointsInStock = stats != null ? stats.researchPointsInStock : 0;
         int totalhumansInStock = stats != null ? stats.totalhumansInStock : 0;
         bool isTree = tile != null && tile.isTree;
         bool isStone = tile != null && tile.isStone;
         bool isResearched = researchScript != null && researchScript.isResearched;
         // then, create new playerData with all  the previous variables
-        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, stoneInStock, researchPointsInStock, isTree, isStone, position, isResearched);
+        PlayerData data = new PlayerData(prefabName, woodOnTree, woodInStock, foodInStock, humansInStock, totalhumansInStock, stoneInStock, researchPointsInStock,moneyInStock, isTree, isStone, position, isResearched);
         // create a binary formatter and save the go with the prefab name
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/" + prefabName + ".dat";
@@ -140,6 +140,7 @@ public static class Saving // this class had to be renamed cuz of a bug
                     stats.totalhumansInStock = data.totalhumansInStock;
                     stats.stoneInStock = data.stoneInStock;
                     stats.researchPointsInStock = data.researchPointsInStock;
+                    stats.moneyInStock = data.moneyInStock;
                 }
 
                 // restore the tile, if the gameObject has a tile component, also this is redundant idk why im keeping it here

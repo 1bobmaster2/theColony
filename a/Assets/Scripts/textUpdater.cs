@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class textUpdater : MonoBehaviour
 {
-    [SerializeField] private Text woodText, humanText, foodText, stoneText, researchPointsText; // reference to the texts
+    [SerializeField] private Text woodText, humanText, foodText, stoneText, researchPointsText, moneyText; // reference to the texts
     public Stats stats; // reference to the stats
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,5 +23,6 @@ public class textUpdater : MonoBehaviour
         foodText.text = stats.foodInStock.ToString();
         stoneText.text = stats.stoneInStock.ToString();
         researchPointsText.text = stats.researchPointsInStock.ToString();
+        moneyText.text = stats.moneyInStock.ToString();
     }
 }

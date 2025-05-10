@@ -52,6 +52,7 @@ public class marketWindowScript : MonoBehaviour
                 stats.woodInStock += amountOfWood;
                 stats.foodInStock += amountOfFood;
                 stats.stoneInStock += amountOfStone;
+                stats.moneyInStock -= cost;
             }
         }
         else // this is sell

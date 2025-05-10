@@ -38,6 +38,7 @@ public class CreatingLoadingSaves : MonoBehaviour
         public int foodInStock;
         public int humansInStock;
         public int stoneInStock;
+        public int moneyInStock;
         public int researchPointsInStock;
         public int totalhumansInStock;
         public float[] position;
@@ -81,6 +82,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                 stoneInStock = stats != null ? stats.stoneInStock : 0,
                 researchPointsInStock = stats != null ? stats.researchPointsInStock : 0,
                 totalhumansInStock = stats != null ? stats.totalhumansInStock : 0,
+                moneyInStock = stats != null ? stats.moneyInStock : 0,
                 position = pos,
                 isResearched = researchScript != null && researchScript.isResearched
             };
@@ -114,6 +116,7 @@ public class CreatingLoadingSaves : MonoBehaviour
                         data.stoneInStock,
                         data.researchPointsInStock,
                         data.totalhumansInStock,
+                        data.moneyInStock,
                         data.isTree,
                         data.isStone,
                         data.position,
