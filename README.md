@@ -1,4 +1,4 @@
 # theColony
 repo for my itch io unity project. 
-currently its playable and working but im still expanding on it
+currently its playable and working.
 https://newdeveloperandprogamer.itch.io/the-colony
